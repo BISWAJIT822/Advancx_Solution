@@ -1,16 +1,31 @@
-# React + Vite
+# Advancx Solution &mdash; J.A.R.V.I.S. Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An interactive, high-tech portfolio website themed around the J.A.R.V.I.S. artificial intelligence visual aesthetic. Features a real-time mathematically projected 3D wireframe globe, dynamic canvas charts, responsive mobile navigation, and a modern light-mode orange neon color theme.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **3D Holographic Globe:** A lightweight, high-performance HTML5 Canvas 3D projection engine that spins, tilts, and depth-sorts particle rings and satellite nodes.
+- **Interactive Telemetry:** Live SVG graphs and metrics that pulse to simulate operation loads (CPU, memory, storage, network latency).
+- **Responsive Layout:** Responsive layout grid built with CSS flex and grid, support for stick navigation headers, and mobile drawers.
+- **Design Aesthetic:** Premium typography, soft frosted overlays, glowing horizontal lens flares, and margin dot-grids.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core:** React, Vite
+- **Styling:** Vanilla CSS, Lucide icons
+- **Graphics:** HTML5 2D Canvas context (for 3D projections)
 
-## Expanding the Oxlint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start local development server:
+   ```bash
+   npm run dev
+   ```
+3. Build production bundle:
+   ```bash
+   npm run build
+   ```
