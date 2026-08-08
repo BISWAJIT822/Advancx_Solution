@@ -1603,28 +1603,6 @@ textarea.form-control {
   transform: translateX(4px);
 }
 
-/* Horizontal glowing lens flare line running behind the core */
-.glow-light-beam {
-  position: absolute;
-  top: 48%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, 
-    transparent 0%, 
-    rgba(255, 95, 31, 0.06) 20%, 
-    rgba(255, 95, 31, 0.28) 42%, 
-    rgba(255, 255, 255, 0.98) 50%, 
-    rgba(255, 95, 31, 0.28) 58%, 
-    rgba(255, 95, 31, 0.06) 80%, 
-    transparent 100%
-  );
-  filter: blur(1px) drop-shadow(0 0 12px rgba(255, 95, 31, 0.95));
-  transform: translateY(-50%);
-  z-index: 1;
-  pointer-events: none;
-}
-
 /* Background Dotted Grids at Margins */
 .hero-section-wrapper::before,
 .hero-section-wrapper::after {

@@ -27,9 +27,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="section hero-section-wrapper" style={{ paddingTop: '150px', paddingBottom: '90px', position: 'relative' }}>
-      
-      {/* Faint horizontal glowing light beam running behind the core */}
-      <div className="glow-light-beam"></div>
 
       <div className="container" style={{ position: 'relative', zIndex: '2' }}>
         <div className="hero-grid">
