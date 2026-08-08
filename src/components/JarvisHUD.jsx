@@ -1,26 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const JarvisHUD = () => {
   const canvasRef = useRef(null);
-  const [chartPath2, setChartPath2] = useState("M 0 20 Q 20 8 40 22 T 80 14 T 120 18");
-
-  // Animate the efficiency line graph slightly to make it look alive!
-  useEffect(() => {
-    const timer = setInterval(() => {
-      const points2 = [
-        `0,${18 + Math.random() * 4}`,
-        `20,${8 + Math.random() * 10}`,
-        `40,${22 + Math.random() * 6}`,
-        `60,${12 + Math.random() * 8}`,
-        `80,${24 + Math.random() * 6}`,
-        `100,${14 + Math.random() * 6}`,
-        `120,${18 + Math.random() * 4}`
-      ];
-      setChartPath2(`M ${points2.join(" L ")}`);
-    }, 500);
-
-    return () => clearInterval(timer);
-  }, []);
 
   // J.A.R.V.I.S. Neural Matrix — a rotating 3D web of synaptic nodes,
   // travelling signal pulses, a conscious core & holographic HUD arcs.
@@ -289,12 +270,6 @@ const JarvisHUD = () => {
 
           {/* Neural Matrix Canvas */}
           <canvas ref={canvasRef} width={320} height={320} className="hologram-canvas" />
-
-          {/* Bottom Framed J.A.R.V.I.S CORE Label */}
-          <div className="hud-hologram-data-box">
-            <span className="hud-data-title">J.A.R.V.I.S &nbsp; C O R E</span>
-            <span className="hud-data-hz">NEURAL_MATRIX // SYNC 100%</span>
-          </div>
         </div>
       </div>
 
@@ -305,17 +280,7 @@ const JarvisHUD = () => {
         <div className="dashboard-card card-metrics">
           <div className="metrics-list">
 
-            {/* Metric item 1: CPU */}
-            <div className="metric-item">
-              <div className="metric-header">
-                <span className="metric-icon-cpu">&#x2699;</span>
-                <span className="metric-name">CPU USAGE</span>
-                <span className="metric-value">23%</span>
-              </div>
-              <MetricLevel activeSegments={2} />
-            </div>
-
-            {/* Metric item 2: MEMORY */}
+            {/* Metric item: MEMORY */}
             <div className="metric-item">
               <div className="metric-header">
                 <span className="metric-icon-mem">&#x1F5D1;</span>
@@ -345,22 +310,6 @@ const JarvisHUD = () => {
               <MetricLevel activeSegments={6} />
             </div>
 
-          </div>
-        </div>
-
-        {/* CARD 3: PERFORMANCE / EFFICIENCY */}
-        <div className="dashboard-card card-performance">
-          <div className="performance-row">
-            <div className="metric-group">
-              <span className="card-label">PERFORMANCE</span>
-              <span className="card-value text-orange">98.6%</span>
-            </div>
-            <div className="metric-group right-align">
-              <span className="card-label">EFFICIENCY</span>
-              <svg className="hud-chart-svg inline-chart" viewBox="0 0 120 32" width="60" height="18">
-                <path d={chartPath2} fill="none" stroke="var(--primary-color)" strokeWidth="1.2" />
-              </svg>
-            </div>
           </div>
         </div>
 
