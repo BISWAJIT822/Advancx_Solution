@@ -1263,13 +1263,26 @@ textarea.form-control {
 /* 3D Hologram Viewport & Layout */
 .hologram-viewport {
   position: relative;
-  width: 320px;
-  height: 380px;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 3;
+}
+
+/* Interactive 3D neural core stage fills the framed viewport */
+.neural-core-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  filter: drop-shadow(0 0 22px rgba(255, 95, 31, 0.18));
+}
+.neural-core-stage canvas {
+  display: block;
+  cursor: grab;
 }
 
 /* 3D Frame L-Brackets */
@@ -1281,6 +1294,8 @@ textarea.form-control {
   opacity: 0.5;
   box-shadow: 0 0 8px rgba(255, 95, 31, 0.18);
   transition: var(--transition-smooth);
+  z-index: 4;
+  pointer-events: none;
 }
 
 /* Small accent dot on each frame corner */
@@ -1300,8 +1315,8 @@ textarea.form-control {
 
 .top-left { top: 0px; left: 0px; border-right: none; border-bottom: none; }
 .top-right { top: 0px; right: 0px; border-left: none; border-bottom: none; }
-.bottom-left { bottom: 60px; left: 0px; border-right: none; border-top: none; }
-.bottom-right { bottom: 60px; right: 0px; border-left: none; border-top: none; }
+.bottom-left { bottom: 0px; left: 0px; border-right: none; border-top: none; }
+.bottom-right { bottom: 0px; right: 0px; border-left: none; border-top: none; }
 
 .jarvis-hud-container:hover .hud-frame-bracket {
   opacity: 0.75;
