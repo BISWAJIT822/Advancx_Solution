@@ -36,7 +36,7 @@ const JarvisHUD = () => {
     return () => clearInterval(timer);
   }, []);
 
-  // 3D Canvas Projection Globe Logic
+  // Radial "Supernova" HUD — particle burst, radar rings & fusion core
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -44,226 +44,206 @@ const JarvisHUD = () => {
     const ctx = canvas.getContext('2d');
     let animationFrameId;
 
-    const R = 92; // Globe Radius
-    const fov = 300; // Perspective FOV
-    const cx = canvas.width / 2;
-    const cy = canvas.height / 2;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const size = 320;            // logical drawing size
+    canvas.width = size * dpr;
+    canvas.height = size * dpr;
+    canvas.style.width = `${size}px`;
+    canvas.style.height = `${size}px`;
+    ctx.scale(dpr, dpr);
 
-    let angleY = 0; // Y axis rotation (spinning)
-    let angleX = 0.22; // X axis tilt
+    const cx = size / 2;
+    const cy = size / 2;
+    const R = 150;               // outer radius of the burst
+
+    // Warm colour ramp: bright near the core, deep orange at the rim
+    const colorFor = (t) => {
+      if (t < 0.22) return '255, 205, 140';
+      if (t < 0.45) return '255, 150, 66';
+      if (t < 0.72) return '255, 110, 40';
+      return '255, 95, 31';
+    };
+
+    // Radial spokes of particles fanning out from the core
+    const SPOKES = 76;
+    const spokeParticles = [];
+    for (let s = 0; s < SPOKES; s++) {
+      const a = (s / SPOKES) * Math.PI * 2;
+      const reach = 0.55 + Math.random() * 0.45;
+      const count = 14 + Math.floor(Math.random() * 9);
+      for (let i = 1; i <= count; i++) {
+        const frac = i / count;
+        const r = Math.pow(frac, 1.22) * R * reach;
+        spokeParticles.push({
+          a,
+          r,
+          size: 0.55 + (1 - frac) * 1.2,
+          baseAlpha: 0.28 + (1 - frac) * 0.6,
+          tw: Math.random() * Math.PI * 2,
+          twSpeed: 0.5 + Math.random() * 1.6,
+        });
+      }
+    }
+
+    // Concentric dotted radar rings
+    const RINGS = 15;
+    const ringParticles = [];
+    for (let ri = 1; ri <= RINGS; ri++) {
+      const r = (ri / RINGS) * R;
+      const per = Math.max(28, Math.floor(r * 0.85));
+      const jitter = Math.random() * Math.PI * 2;
+      for (let i = 0; i < per; i++) {
+        const a = (i / per) * Math.PI * 2 + jitter;
+        ringParticles.push({
+          a,
+          r,
+          size: 0.5 + Math.random() * 0.45,
+          baseAlpha: 0.1 + Math.random() * 0.22,
+          tw: Math.random() * Math.PI * 2,
+          twSpeed: 0.4 + Math.random() * 1.0,
+        });
+      }
+    }
+
+    // Free-floating sparks for extra shimmer
+    const sparks = [];
+    for (let i = 0; i < 70; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const r = R * 0.28 + Math.random() * R * 0.78;
+      sparks.push({
+        a,
+        r,
+        size: 0.5 + Math.random() * 1.4,
+        baseAlpha: 0.18 + Math.random() * 0.6,
+        tw: Math.random() * Math.PI * 2,
+        twSpeed: 0.8 + Math.random() * 2.2,
+      });
+    }
+
     let time = 0;
+    let rot = 0;
 
-    // Generate latitude rings
-    const lats = [-60, -40, -20, 0, 20, 40, 60];
-    const latRings = lats.map((latDeg) => {
-      const lat = (latDeg * Math.PI) / 180;
-      const y = R * Math.sin(lat);
-      const r = R * Math.cos(lat);
-      const points = [];
-      for (let i = 0; i < 32; i++) {
-        const theta = (i * 2 * Math.PI) / 32;
-        points.push({ x: r * Math.cos(theta), y: y, z: r * Math.sin(theta) });
-      }
-      return points;
-    });
-
-    // Generate longitude slices
-    const lons = [0, 30, 60, 90, 120, 150];
-    const lonRings = lons.map((lonDeg) => {
-      const lon = (lonDeg * Math.PI) / 180;
-      const points = [];
-      for (let i = 0; i < 32; i++) {
-        const phi = (i * 2 * Math.PI) / 32;
-        points.push({ x: R * Math.cos(phi) * Math.cos(lon), y: R * Math.sin(phi), z: R * Math.cos(phi) * Math.sin(lon) });
-      }
-      return points;
-    });
-
-    // Generate diagonal rings
-    const diagRings = [
-      { rx: 0.78, ry: 0.78 },
-      { rx: -0.78, ry: -0.78 }
-    ].map((rot) => {
-      const points = [];
-      for (let i = 0; i < 32; i++) {
-        const theta = (i * 2 * Math.PI) / 32;
-        let x1 = R * Math.cos(theta);
-        let y1 = 0;
-        let z1 = R * Math.sin(theta);
-        let y2 = y1 * Math.cos(rot.rx) - z1 * Math.sin(rot.rx);
-        let z2 = y1 * Math.sin(rot.rx) + z1 * Math.cos(rot.rx);
-        let x3 = x1 * Math.cos(rot.ry) - y2 * Math.sin(rot.ry);
-        let y3 = x1 * Math.sin(rot.ry) + y2 * Math.cos(rot.ry);
-        points.push({ x: x3, y: y3, z: z2 });
-      }
-      return points;
-    });
+    const dot = (p, rotDir, time) => {
+      const a = p.a + rot * rotDir;
+      const x = cx + Math.cos(a) * p.r;
+      const y = cy + Math.sin(a) * p.r;
+      const twinkle = 0.6 + 0.4 * Math.sin(time * p.twSpeed + p.tw);
+      ctx.globalAlpha = Math.min(1, p.baseAlpha * twinkle);
+      ctx.fillStyle = `rgba(${colorFor(p.r / R)}, 1)`;
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+    };
 
     const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, size, size);
+      time += 0.03;
+      rot += 0.0015;
 
-      angleY += 0.005;
-      time += 0.04;
+      // Soft supernova halo behind everything
+      const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, R);
+      halo.addColorStop(0, 'rgba(255, 178, 96, 0.34)');
+      halo.addColorStop(0.16, 'rgba(255, 125, 45, 0.18)');
+      halo.addColorStop(0.5, 'rgba(255, 95, 31, 0.06)');
+      halo.addColorStop(1, 'rgba(255, 95, 31, 0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, 0, Math.PI * 2);
+      ctx.fill();
 
-      const cosY = Math.cos(angleY);
-      const sinY = Math.sin(angleY);
-      const cosX = Math.cos(angleX);
-      const sinX = Math.sin(angleX);
+      // Brighter inner glow disc — the luminous galaxy core
+      const inner = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.42);
+      inner.addColorStop(0, 'rgba(255, 214, 150, 0.55)');
+      inner.addColorStop(0.35, 'rgba(255, 150, 66, 0.28)');
+      inner.addColorStop(1, 'rgba(255, 120, 40, 0)');
+      ctx.fillStyle = inner;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R * 0.42, 0, Math.PI * 2);
+      ctx.fill();
 
-      const drawables = [];
+      // Radar rings (dotted particles)
+      ringParticles.forEach((p) => dot(p, 1, time));
+      // Radial spokes
+      spokeParticles.forEach((p) => dot(p, 1, time));
+      // Counter-rotating sparks
+      sparks.forEach((p) => dot(p, -0.6, time));
 
-      const projectPoint = (p) => {
-        const x1 = p.x * cosY - p.z * sinY;
-        const z1 = p.x * sinY + p.z * cosY;
-        const y2 = p.y * cosX - z1 * sinX;
-        const z2 = p.y * sinX + z1 * cosX;
-        const scale = fov / (fov + z2);
-        return { x: cx + x1 * scale, y: cy + y2 * scale, z: z2 };
-      };
+      // Perimeter tick bezel + faint bounding rings
+      ctx.save();
+      ctx.translate(cx, cy);
+      const TICKS = 72;
+      for (let i = 0; i < TICKS; i++) {
+        const a = (i / TICKS) * Math.PI * 2 + rot * 0.5;
+        const major = i % 6 === 0;
+        const r0 = R * 0.99;
+        const r1 = r0 - (major ? 9 : 5);
+        ctx.globalAlpha = major ? 0.5 : 0.2;
+        ctx.strokeStyle = 'rgba(255, 95, 31, 1)';
+        ctx.lineWidth = major ? 1.2 : 0.7;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(a) * r1, Math.sin(a) * r1);
+        ctx.lineTo(Math.cos(a) * r0, Math.sin(a) * r0);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 0.22;
+      ctx.lineWidth = 0.8;
+      ctx.beginPath();
+      ctx.arc(0, 0, R * 0.99, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.globalAlpha = 0.12;
+      ctx.setLineDash([2, 7]);
+      ctx.beginPath();
+      ctx.arc(0, 0, R * 0.68, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
 
-      // Add latitude lines
-      latRings.forEach((ring, ringIdx) => {
-        const isEquator = lats[ringIdx] === 0;
-        const projected = ring.map(projectPoint);
-        for (let i = 0; i < projected.length; i++) {
-          const p1 = projected[i];
-          const p2 = projected[(i + 1) % projected.length];
-          drawables.push({
-            type: 'line',
-            x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y,
-            z: (p1.z + p2.z) / 2,
-            dash: isEquator ? [3, 4] : [1, 5],
-            color: 'var(--primary-color)',
-            width: isEquator ? 1.5 : 0.8
-          });
-        }
-      });
+      // Rotating sun-ray flare around the core
+      ctx.save();
+      ctx.translate(cx, cy);
+      const RAYS = 44;
+      for (let i = 0; i < RAYS; i++) {
+        const a = (i / RAYS) * Math.PI * 2 - rot * 2.4;
+        const major = i % 2 === 0;
+        const len = 24 + (major ? 12 : 0) + Math.sin(time * 1.1 + i) * 4;
+        ctx.globalAlpha = major ? 0.32 : 0.14;
+        ctx.strokeStyle = 'rgba(255, 120, 40, 1)';
+        ctx.lineWidth = major ? 1.1 : 0.6;
+        ctx.beginPath();
+        ctx.moveTo(Math.cos(a) * 11, Math.sin(a) * 11);
+        ctx.lineTo(Math.cos(a) * len, Math.sin(a) * len);
+        ctx.stroke();
+      }
+      ctx.restore();
 
-      // Add longitude lines
-      lonRings.forEach((ring, ringIdx) => {
-        const projected = ring.map(projectPoint);
-        const isMainLon = lons[ringIdx] === 90;
-        for (let i = 0; i < projected.length; i++) {
-          const p1 = projected[i];
-          const p2 = projected[(i + 1) % projected.length];
-          drawables.push({
-            type: 'line',
-            x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y,
-            z: (p1.z + p2.z) / 2,
-            dash: isMainLon ? [4, 6] : [2, 8],
-            color: isMainLon ? 'var(--primary-color)' : 'rgba(255, 95, 31, 0.45)',
-            width: 0.8
-          });
-        }
-      });
+      // Fusion core
+      const pulse = 1 + 0.06 * Math.sin(time * 1.6);
+      const coreR = 22 * pulse;
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+      grad.addColorStop(0, '#ffffff');
+      grad.addColorStop(0.25, '#fff2d6');
+      grad.addColorStop(0.55, '#ff8a2e');
+      grad.addColorStop(0.85, '#e85d0a');
+      grad.addColorStop(1, 'rgba(232, 93, 10, 0)');
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 30;
+      ctx.shadowColor = '#ff7a1f';
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
 
-      // Add diagonal rings
-      diagRings.forEach((ring, idx) => {
-        const projected = ring.map(projectPoint);
-        for (let i = 0; i < projected.length; i++) {
-          const p1 = projected[i];
-          const p2 = projected[(i + 1) % projected.length];
-          drawables.push({
-            type: 'line',
-            x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y,
-            z: (p1.z + p2.z) / 2,
-            dash: idx === 0 ? [8, 4] : [1, 4],
-            color: idx === 0 ? '#ff5f1f' : '#ff8c00',
-            width: 1.0
-          });
-        }
-      });
+      // White-hot centre
+      ctx.beginPath();
+      ctx.arc(cx, cy, 6 * pulse, 0, Math.PI * 2);
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = '#ffffff';
+      ctx.fill();
+      ctx.shadowBlur = 0;
 
-      // Add satellites
-      const sat1Angle = time * 0.7;
-      const sat1 = projectPoint({
-        x: 130 * Math.cos(sat1Angle),
-        y: 130 * Math.sin(sat1Angle) * Math.cos(0.52),
-        z: 130 * Math.sin(sat1Angle) * Math.sin(0.52)
-      });
-      drawables.push({ type: 'point', x: sat1.x, y: sat1.y, z: sat1.z, color: '#ff5f1f', size: 3.5, glow: '#ff5f1f', glowRadius: 8 });
-
-      const sat2Angle = -time * 0.45;
-      const sat2 = projectPoint({
-        x: 125 * Math.cos(sat2Angle) * Math.cos(0.78),
-        y: 125 * Math.sin(sat2Angle),
-        z: 125 * Math.cos(sat2Angle) * Math.sin(0.78)
-      });
-      drawables.push({ type: 'point', x: sat2.x, y: sat2.y, z: sat2.z, color: '#ffb03a', size: 3, glow: '#ffb03a', glowRadius: 10 });
-
-      const sat3Angle = time * 0.25;
-      const sat3 = projectPoint({
-        x: 145 * Math.sin(sat3Angle) * Math.cos(1.0),
-        y: 145 * Math.cos(sat3Angle),
-        z: 145 * Math.sin(sat3Angle) * Math.sin(1.0)
-      });
-      drawables.push({ type: 'point', x: sat3.x, y: sat3.y, z: sat3.z, color: '#ffffff', size: 2.5, glow: '#ffffff', glowRadius: 6 });
-
-      // Add Reactor Core
-      drawables.push({ type: 'core', z: 0 });
-
-      // Depth Sort
-      drawables.sort((a, b) => b.z - a.z);
-
-      // Render
-      drawables.forEach((item) => {
-        const depthVal = (item.z + R) / (2 * R);
-        const alphaScale = Math.max(0.12, Math.min(1.0, 0.9 - depthVal * 0.72));
-        const widthScale = Math.max(0.4, Math.min(2.5, 1.8 - depthVal * 1.3));
-
-        if (item.type === 'line') {
-          ctx.beginPath();
-          ctx.moveTo(item.x1, item.y1);
-          ctx.lineTo(item.x2, item.y2);
-          ctx.strokeStyle = item.color;
-          ctx.globalAlpha = alphaScale;
-          ctx.lineWidth = item.width * widthScale;
-          ctx.setLineDash(item.dash || []);
-          ctx.stroke();
-          ctx.setLineDash([]);
-        } 
-        else if (item.type === 'point') {
-          ctx.beginPath();
-          ctx.arc(item.x, item.y, item.size * widthScale, 0, 2 * Math.PI);
-          ctx.shadowBlur = item.glowRadius;
-          ctx.shadowColor = item.glow;
-          ctx.fillStyle = item.color;
-          ctx.globalAlpha = alphaScale;
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        } 
-        else if (item.type === 'core') {
-          const pulse = 1 + 0.08 * Math.sin(time * 1.5);
-          const coreRadius = 24 * pulse;
-          
-          ctx.beginPath();
-          ctx.arc(cx, cy, coreRadius, 0, 2 * Math.PI);
-          const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreRadius);
-          grad.addColorStop(0, '#ffffff');
-          grad.addColorStop(0.2, '#fffae8');
-          grad.addColorStop(0.5, '#ff7c1f');
-          grad.addColorStop(0.85, '#e65100');
-          grad.addColorStop(1, 'transparent');
-          
-          ctx.fillStyle = grad;
-          ctx.globalAlpha = 0.98;
-          ctx.shadowBlur = 28;
-          ctx.shadowColor = '#e65100';
-          ctx.fill();
-          ctx.shadowBlur = 0;
-          
-          ctx.beginPath();
-          ctx.arc(cx, cy, 7 * pulse, 0, 2 * Math.PI);
-          ctx.fillStyle = '#ffffff';
-          ctx.shadowBlur = 10;
-          ctx.shadowColor = '#ffffff';
-          ctx.globalAlpha = 1.0;
-          ctx.fill();
-          ctx.shadowBlur = 0;
-        }
-      });
-
-      ctx.globalAlpha = 1.0;
+      ctx.globalAlpha = 1;
       animationFrameId = requestAnimationFrame(draw);
     };
 
@@ -287,7 +267,7 @@ const JarvisHUD = () => {
 
   return (
     <div className="jarvis-split-layout">
-      
+
       {/* LEFT COLUMN: Hologram Globe */}
       <div className="hologram-viewport-column">
         <div className="hologram-viewport">
@@ -310,7 +290,7 @@ const JarvisHUD = () => {
 
       {/* RIGHT COLUMN: Telemetry Dashboard */}
       <div className="hud-dashboard-column">
-        
+
         {/* CARD 1: SYSTEM STATUS */}
         <div className="dashboard-card card-status">
           <div className="card-header-row">
@@ -334,7 +314,7 @@ const JarvisHUD = () => {
         {/* CARD 2: SYSTEM METRICS LIST */}
         <div className="dashboard-card card-metrics">
           <div className="metrics-list">
-            
+
             {/* Metric item 1: CPU */}
             <div className="metric-item">
               <div className="metric-header">
