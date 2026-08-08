@@ -245,21 +245,10 @@ const JarvisHUD = () => {
     };
   }, []);
 
-  // Helper component to render segmented metric levels
-  const MetricLevel = ({ activeSegments }) => {
-    return (
-      <div className="metric-level-bar">
-        {[...Array(8)].map((_, i) => (
-          <span key={i} className={`segment ${i < activeSegments ? 'active' : ''}`} />
-        ))}
-      </div>
-    );
-  };
-
   return (
     <div className="jarvis-split-layout">
 
-      {/* LEFT COLUMN: Neural Matrix Hologram */}
+      {/* Neural Matrix Hologram */}
       <div className="hologram-viewport-column">
         <div className="hologram-viewport">
           {/* L-Brackets */}
@@ -271,48 +260,6 @@ const JarvisHUD = () => {
           {/* Neural Matrix Canvas */}
           <canvas ref={canvasRef} width={320} height={320} className="hologram-canvas" />
         </div>
-      </div>
-
-      {/* RIGHT COLUMN: Telemetry Dashboard */}
-      <div className="hud-dashboard-column">
-
-        {/* CARD: SYSTEM METRICS LIST */}
-        <div className="dashboard-card card-metrics">
-          <div className="metrics-list">
-
-            {/* Metric item: MEMORY */}
-            <div className="metric-item">
-              <div className="metric-header">
-                <span className="metric-icon-mem">&#x1F5D1;</span>
-                <span className="metric-name">MEMORY</span>
-                <span className="metric-value">45%</span>
-              </div>
-              <MetricLevel activeSegments={4} />
-            </div>
-
-            {/* Metric item 3: NETWORK */}
-            <div className="metric-item">
-              <div className="metric-header">
-                <span className="metric-icon-net">&#x2609;</span>
-                <span className="metric-name">NETWORK</span>
-                <span className="metric-value">68%</span>
-              </div>
-              <MetricLevel activeSegments={5} />
-            </div>
-
-            {/* Metric item 4: STORAGE */}
-            <div className="metric-item">
-              <div className="metric-header">
-                <span className="metric-icon-storage">&#x1F5C4;</span>
-                <span className="metric-name">STORAGE</span>
-                <span className="metric-value">72%</span>
-              </div>
-              <MetricLevel activeSegments={6} />
-            </div>
-
-          </div>
-        </div>
-
       </div>
 
     </div>
