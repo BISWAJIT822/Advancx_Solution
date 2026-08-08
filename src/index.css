@@ -1579,6 +1579,9 @@ textarea.form-control {
 
 .text-accent-color {
   color: var(--primary-color) !important;
+  /* Override the h1's inherited transparent text-fill (background-clip: text)
+     so the accent word actually paints orange instead of the dark gradient. */
+  -webkit-text-fill-color: var(--primary-color) !important;
   font-weight: inherit;
 }
 
@@ -1619,6 +1622,89 @@ textarea.form-control {
 .hero-section-wrapper::after {
   bottom: 40px;
   left: 40px;
+}
+
+/* ===== Ambient AI / tech background decor ===== */
+.hero-tech-decor {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Faded dot matrix filling the hero */
+.tech-dot-grid {
+  position: absolute;
+  inset: -8%;
+  background-image: radial-gradient(circle, rgba(255, 95, 31, 0.42) 1.4px, transparent 1.6px);
+  background-size: 24px 24px;
+  opacity: 1;
+  -webkit-mask-image: radial-gradient(ellipse 82% 74% at 52% 46%, #000 45%, transparent 88%);
+  mask-image: radial-gradient(ellipse 82% 74% at 52% 46%, #000 45%, transparent 88%);
+}
+
+/* Subtle horizontal scan lines */
+.tech-scan-lines {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 95, 31, 0.04) 0px,
+    rgba(255, 95, 31, 0.04) 1px,
+    transparent 1px,
+    transparent 7px
+  );
+  opacity: 0.6;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 30%, #000 70%, transparent);
+}
+
+/* Floating code / telemetry fragments */
+.code-frag {
+  position: absolute;
+  font-family: 'Courier New', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  color: rgba(255, 95, 31, 0.55);
+  font-weight: 600;
+  user-select: none;
+  animation: cf-drift 11s ease-in-out infinite;
+}
+
+@keyframes cf-drift {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-9px); opacity: 0.6; }
+}
+
+.cf-1  { top: 13%; left: 3%;  font-size: 12px; color: rgba(255, 95, 31, 0.28); animation-delay: 0s;   }
+.cf-2  { top: 30%; left: 1%;  font-size: 12px; color: rgba(255, 95, 31, 0.26); animation-delay: -2s; }
+.cf-3  { bottom: 15%; left: 3%; font-size: 13px; color: rgba(255, 95, 31, 0.28); animation-delay: -5s; }
+.cf-4  { top: 10%; right: 8%;  font-size: 13px; animation-delay: -1s; }
+.cf-5  { top: 40%; right: 3%;  font-size: 13px; animation-delay: -6s; }
+.cf-6  { bottom: 12%; right: 6%; font-size: 13px; animation-delay: -3s; }
+.cf-7  { top: 6%;  left: 40%; font-size: 11px; color: rgba(255, 95, 31, 0.28); animation-delay: -4s; }
+.cf-8  { bottom: 8%; left: 42%; font-size: 12px; color: rgba(255, 95, 31, 0.3); animation-delay: -7s; }
+.cf-9  { top: 58%; right: 12%; font-size: 12px; animation-delay: -8s; }
+.cf-10 { bottom: 30%; left: 2%; font-size: 11px; color: rgba(255, 95, 31, 0.28); animation-delay: -2.5s; }
+.cf-11 { top: 22%; right: 20%; font-size: 12px; animation-delay: -9s; }
+.cf-12 { bottom: 24%; right: 22%; font-size: 12px; animation-delay: -5.5s; }
+
+/* Corner circuit line accents */
+.circuit-accent {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  color: rgba(255, 95, 31, 0.44);
+}
+.ca-tl { top: 26px; left: 20px; }
+.ca-br { bottom: 26px; right: 20px; }
+
+@media (max-width: 768px) {
+  .code-frag { display: none; }
+  .circuit-accent { display: none; }
+  .tech-dot-grid { opacity: 0.4; }
 }
 
 /* Navbar active bottom indicator line */

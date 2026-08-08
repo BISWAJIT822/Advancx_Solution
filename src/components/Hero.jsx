@@ -2,6 +2,22 @@ import React from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import JarvisHUD from './JarvisHUD';
 
+// Ambient AI / telemetry code fragments drifting in the hero background
+const codeFragments = [
+  '> BOOTING AI KERNEL…',
+  'const core = new NeuralCore();',
+  'model.predict(x) → 0.986',
+  '[OK] synapse link established',
+  '0x1F · 0xFF · 0x5F',
+  'await core.think();',
+  'tensor.shape = [1, 512, 512]',
+  '01001101 01001001 01000001',
+  'GET /v1/inference · 200 OK',
+  'sync 100% · latency 12ms',
+  'nodes: 12,458 · load 67.3%',
+  'training epoch 42 · loss 0.014',
+];
+
 const Hero = () => {
   const handleScrollToContact = (e) => {
     e.preventDefault();
@@ -27,6 +43,34 @@ const Hero = () => {
 
   return (
     <section id="home" className="section hero-section-wrapper" style={{ paddingTop: '150px', paddingBottom: '90px', position: 'relative' }}>
+
+      {/* Ambient AI / tech background decor */}
+      <div className="hero-tech-decor" aria-hidden="true">
+        <div className="tech-dot-grid"></div>
+        <div className="tech-scan-lines"></div>
+
+        {codeFragments.map((frag, i) => (
+          <span key={i} className={`code-frag cf-${i + 1}`}>{frag}</span>
+        ))}
+
+        <svg className="circuit-accent ca-tl" viewBox="0 0 140 140" fill="none">
+          <path d="M4 44 H34 L50 28 H104 L118 42 V96" stroke="currentColor" strokeWidth="1" />
+          <path d="M4 72 H22 L36 86 H92" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+          <circle cx="4" cy="44" r="2.5" fill="currentColor" />
+          <circle cx="104" cy="28" r="2.5" fill="currentColor" />
+          <circle cx="118" cy="96" r="2.5" fill="currentColor" />
+          <circle cx="92" cy="86" r="2" fill="currentColor" />
+        </svg>
+
+        <svg className="circuit-accent ca-br" viewBox="0 0 140 140" fill="none">
+          <path d="M136 96 H106 L90 112 H36 L22 98 V44" stroke="currentColor" strokeWidth="1" />
+          <path d="M136 68 H118 L104 54 H48" stroke="currentColor" strokeWidth="1" opacity="0.6" />
+          <circle cx="136" cy="96" r="2.5" fill="currentColor" />
+          <circle cx="36" cy="112" r="2.5" fill="currentColor" />
+          <circle cx="22" cy="44" r="2.5" fill="currentColor" />
+          <circle cx="48" cy="54" r="2" fill="currentColor" />
+        </svg>
+      </div>
 
       <div className="container" style={{ position: 'relative', zIndex: '2' }}>
         <div className="hero-grid">
