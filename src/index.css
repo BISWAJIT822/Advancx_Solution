@@ -288,11 +288,6 @@ button {
   display: flex;
   align-items: center;
   gap: 32px;
-  background: var(--nav-links-bg);
-  padding: 8px 24px;
-  border-radius: 9999px;
-  border: 1px solid var(--nav-links-border);
-  backdrop-filter: blur(8px);
 }
 
 .nav-link {
