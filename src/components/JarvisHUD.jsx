@@ -2,25 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 
 const JarvisHUD = () => {
   const canvasRef = useRef(null);
-  const [chartPath1, setChartPath1] = useState("M 0 16 L 15 12 L 30 20 L 45 8 L 60 22 L 75 14 L 90 18 L 105 8 L 120 16");
   const [chartPath2, setChartPath2] = useState("M 0 20 Q 20 8 40 22 T 80 14 T 120 18");
 
-  // Animate the line graphs slightly to make them look alive!
+  // Animate the efficiency line graph slightly to make it look alive!
   useEffect(() => {
     const timer = setInterval(() => {
-      const points1 = [
-        `0,${14 + Math.random() * 4}`,
-        `15,${10 + Math.random() * 8}`,
-        `30,${16 + Math.random() * 6}`,
-        `45,${6 + Math.random() * 8}`,
-        `60,${20 + Math.random() * 6}`,
-        `75,${12 + Math.random() * 8}`,
-        `90,${16 + Math.random() * 6}`,
-        `105,${6 + Math.random() * 10}`,
-        `120,${14 + Math.random() * 4}`
-      ];
-      setChartPath1(`M ${points1.join(" L ")}`);
-
       const points2 = [
         `0,${18 + Math.random() * 4}`,
         `20,${8 + Math.random() * 10}`,
@@ -55,8 +41,9 @@ const JarvisHUD = () => {
 
     const cx = size / 2;
     const cy = size / 2;
-    const R = 104;          // neural sphere radius
-    const fov = 340;        // perspective depth
+    const R = 140;          // neural sphere radius (fills the frame)
+    const fov = 520;        // perspective depth (flatter so the limb fits)
+    const FRAME = 157;      // rim radius for HUD arcs & tick bezel
     const TAU = Math.PI * 2;
 
     // --- Nodes: evenly distributed on a sphere (Fibonacci lattice) ---
@@ -99,12 +86,12 @@ const JarvisHUD = () => {
       });
     }
 
-    // --- Holographic HUD arcs sweeping around the matrix ---
+    // --- Holographic HUD arcs sweeping around the matrix rim ---
     const arcs = [
-      { r: R * 1.16, a0: 0.2, a1: 2.1, sp: 0.010, w: 1.5, dash: [7, 6] },
-      { r: R * 1.30, a0: 3.1, a1: 4.5, sp: -0.007, w: 1.0, dash: [3, 8] },
-      { r: R * 1.10, a0: 5.0, a1: 6.1, sp: 0.014, w: 0.9, dash: [2, 6] },
-      { r: R * 1.38, a0: 1.4, a1: 2.2, sp: -0.011, w: 1.2, dash: [10, 5] },
+      { r: FRAME - 8, a0: 0.2, a1: 2.1, sp: 0.010, w: 1.5, dash: [7, 6] },
+      { r: FRAME - 2, a0: 3.1, a1: 4.5, sp: -0.007, w: 1.0, dash: [3, 8] },
+      { r: FRAME - 12, a0: 5.0, a1: 6.1, sp: 0.014, w: 0.9, dash: [2, 6] },
+      { r: FRAME, a0: 1.4, a1: 2.2, sp: -0.011, w: 1.2, dash: [10, 5] },
     ];
 
     let angleY = 0;
@@ -132,13 +119,13 @@ const JarvisHUD = () => {
       arcRot += 1;
 
       // Ambient holographic halo
-      const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.5);
+      const halo = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 1.15);
       halo.addColorStop(0, 'rgba(255, 172, 92, 0.24)');
-      halo.addColorStop(0.4, 'rgba(255, 110, 40, 0.08)');
+      halo.addColorStop(0.45, 'rgba(255, 110, 40, 0.08)');
       halo.addColorStop(1, 'rgba(255, 95, 31, 0)');
       ctx.fillStyle = halo;
       ctx.beginPath();
-      ctx.arc(cx, cy, R * 1.5, 0, TAU);
+      ctx.arc(cx, cy, R * 1.15, 0, TAU);
       ctx.fill();
 
       // Project every node once
@@ -254,7 +241,7 @@ const JarvisHUD = () => {
       for (let i = 0; i < TICKS; i++) {
         const a = (i / TICKS) * TAU + arcRot * 0.002;
         const major = i % 5 === 0;
-        const r0 = R * 1.45;
+        const r0 = FRAME;
         const r1 = r0 - (major ? 8 : 4);
         ctx.globalAlpha = major ? 0.4 : 0.16;
         ctx.strokeStyle = 'rgba(255, 95, 31, 1)';
@@ -314,27 +301,7 @@ const JarvisHUD = () => {
       {/* RIGHT COLUMN: Telemetry Dashboard */}
       <div className="hud-dashboard-column">
 
-        {/* CARD 1: SYSTEM STATUS */}
-        <div className="dashboard-card card-status">
-          <div className="card-header-row">
-            <div className="card-header-text">
-              <span className="card-label">SYSTEM STATUS</span>
-              <span className="card-value status-green">OPTIMAL</span>
-            </div>
-            <div className="vertical-status-leds">
-              <span className="led active"></span>
-              <span className="led active"></span>
-              <span className="led active"></span>
-            </div>
-          </div>
-          <div className="hud-chart-container">
-            <svg className="hud-chart-svg" viewBox="0 0 120 32">
-              <path d={chartPath1} fill="none" stroke="var(--primary-color)" strokeWidth="1.2" />
-            </svg>
-          </div>
-        </div>
-
-        {/* CARD 2: SYSTEM METRICS LIST */}
+        {/* CARD: SYSTEM METRICS LIST */}
         <div className="dashboard-card card-metrics">
           <div className="metrics-list">
 
