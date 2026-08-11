@@ -605,7 +605,7 @@ button {
 
 /* Partner Logo Cloud */
 .partners-section {
-  padding: 32px 0;
+  padding: 60px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
@@ -616,7 +616,7 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: var(--text-muted);
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   opacity: 0.6;
 }
 
@@ -628,7 +628,7 @@ button {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 6px 0;
+  padding: 8px 0;
   mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
 }
@@ -641,7 +641,7 @@ button {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 42px;
+  gap: 48px;
   width: max-content;
   animation: partner-marquee 32s linear infinite;
   white-space: nowrap;
@@ -685,6 +685,7 @@ button {
   grid-template-columns: 1.2fr repeat(3, 1fr);
   gap: 40px;
   align-items: center;
+  margin-top: 40px;
 }
 
 @media (max-width: 991px) {

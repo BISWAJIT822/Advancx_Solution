@@ -21,7 +21,7 @@ const Stats = () => {
       <div className="container">
         {/* Partner Logos */}
         <p className="partners-title">Trusted by Leading Organizations</p>
-        <div className="partners-scroll-wrapper" style={{ marginBottom: '40px' }}>
+        <div className="partners-scroll-wrapper" style={{ marginBottom: '80px' }}>
           <div className="partners-flex">
             {marqueeLogos.map((logo, idx) => (
               <div key={idx} className="partner-logo">
