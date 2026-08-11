@@ -82,7 +82,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Email Us</h4>
-                  <p>hello@advancx.solution</p>
+                  <p><a href="mailto:advancxsolution@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>advancxsolution@gmail.com</a></p>
                 </div>
               </div>
 

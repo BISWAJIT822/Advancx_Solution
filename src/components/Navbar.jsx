@@ -12,7 +12,7 @@ const Navbar = () => {
       setIsSticky(window.scrollY > 50);
 
       // Section highlighters
-      const sections = ['home', 'services', 'about', 'contact'];
+      const sections = ['home', 'about', 'services', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -64,18 +64,18 @@ const Navbar = () => {
                 Home
               </a>
               <a
-                href="#services"
-                className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'services')}
-              >
-                Services
-              </a>
-              <a
                 href="#about"
                 className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'about')}
               >
                 About
+              </a>
+              <a
+                href="#services"
+                className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
+                onClick={(e) => handleNavClick(e, 'services')}
+              >
+                Services
               </a>
               <a
                 href="#contact"
@@ -128,18 +128,18 @@ const Navbar = () => {
           Home
         </a>
         <a
-          href="#services"
-          className={`mobile-nav-link ${activeSection === 'services' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'services')}
-        >
-          Services
-        </a>
-        <a
           href="#about"
           className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'about')}
         >
           About
+        </a>
+        <a
+          href="#services"
+          className={`mobile-nav-link ${activeSection === 'services' ? 'active' : ''}`}
+          onClick={(e) => handleNavClick(e, 'services')}
+        >
+          Services
         </a>
         <a
           href="#contact"

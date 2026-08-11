@@ -1,27 +1,35 @@
 import React from 'react';
-import { Target, Zap, TrendingUp, Cpu, Award, Globe } from 'lucide-react';
+import { Target, Zap, TrendingUp, Cpu, Award, Globe, Shield, Layers } from 'lucide-react';
 
 const Stats = () => {
   const logos = [
-    { name: 'Logoipsum', icon: <Cpu size={16} /> },
-    { name: 'University', icon: <Award size={16} /> },
-    { name: 'Network', icon: <Globe size={16} /> },
-    { name: 'Solution', icon: <Target size={16} /> },
-    { name: 'Global', icon: <Zap size={16} /> },
+    { name: 'Logoipsum', icon: <Cpu size={18} /> },
+    { name: 'University', icon: <Award size={18} /> },
+    { name: 'Network', icon: <Globe size={18} /> },
+    { name: 'Solution', icon: <Target size={18} /> },
+    { name: 'Global', icon: <Zap size={18} /> },
+    { name: 'TechScale', icon: <TrendingUp size={18} /> },
+    { name: 'CloudMatrix', icon: <Layers size={18} /> },
+    { name: 'CyberShield', icon: <Shield size={18} /> },
   ];
+
+  // Duplicate logos array for seamless horizontal loop
+  const marqueeLogos = [...logos, ...logos];
 
   return (
     <section id="about" className="partners-section">
       <div className="container">
         {/* Partner Logos */}
         <p className="partners-title">Trusted by Leading Organizations</p>
-        <div className="partners-flex" style={{ marginBottom: '60px' }}>
-          {logos.map((logo, idx) => (
-            <div key={idx} className="partner-logo">
-              {logo.icon}
-              <span>{logo.name}</span>
-            </div>
-          ))}
+        <div className="partners-scroll-wrapper" style={{ marginBottom: '40px' }}>
+          <div className="partners-flex">
+            {marqueeLogos.map((logo, idx) => (
+              <div key={idx} className="partner-logo">
+                {logo.icon}
+                <span>{logo.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Stats Grid */}
