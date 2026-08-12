@@ -1811,7 +1811,10 @@ textarea.form-control {
 .process-section {
   position: relative;
   overflow: hidden;
-  background: var(--bg-deep);
+  background-color: var(--bg-deep);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 95, 31, 0.04) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, rgba(255, 95, 31, 0.04) 0 1px, transparent 1px 22px);
   padding-bottom: 40px;
 }
 
