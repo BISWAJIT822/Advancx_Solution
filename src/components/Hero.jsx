@@ -88,7 +88,7 @@ const Hero = () => {
             </h1>
             
             <p>
-              We help build the operating system for data-driven companies to find and pull their performance levers.
+              We build high-performance websites, mobile apps, e-commerce platforms, and custom software that help businesses grow faster.
             </p>
             
             <div className="hero-actions">
