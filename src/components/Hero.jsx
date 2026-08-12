@@ -78,7 +78,7 @@ const Hero = () => {
           <div className="hero-content reveal active">
             {/* Raw Text Subtitle Badge */}
             <div className="hero-raw-badge">
-              // AI ASSISTANT. ANALYTICS. AUTOMATION.
+              Web Development • Mobile Apps • E-Commerce • Custom Software
             </div>
 
             <h1>
