@@ -166,7 +166,7 @@ const ContactForm = () => {
                     id="phone"
                     name="phone"
                     className="form-control"
-                    placeholder="+91 98765 43210"
+                    placeholder="+1 (555) 000-0000"
                     value={formData.phone}
                     onChange={handleInputChange}
                   />
