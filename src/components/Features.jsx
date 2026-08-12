@@ -42,9 +42,9 @@ const Features = () => {
       <div className="container">
         {/* Section Header */}
         <div className="features-header reveal">
-          <h2>Discover All The Powerful Advancx Features</h2>
+          <h2>Driven by Innovation</h2>
           <p>
-            Unlock powerful features designed to streamline workflows, enhance collaboration, spark innovation, and help your ideas reach the world faster.
+            We transform ideas into powerful digital experiences that drive growth.
           </p>
         </div>
 
