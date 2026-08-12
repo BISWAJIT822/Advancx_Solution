@@ -1812,6 +1812,12 @@ textarea.form-control {
   position: relative;
   overflow: hidden;
   background: var(--bg-deep);
+  padding-bottom: 40px;
+}
+
+/* Tighten the gap into the Contact section */
+#contact {
+  padding-top: 48px;
 }
 
 .process-header {
