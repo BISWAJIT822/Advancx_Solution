@@ -10,6 +10,6 @@ export default defineConfig({
     dedupe: ['react', 'react-dom'],
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react/jsx-runtime', 'three', '@react-three/fiber'],
+    include: ['react', 'react-dom', 'react/jsx-runtime', 'react-router-dom', 'three', '@react-three/fiber'],
   },
 })

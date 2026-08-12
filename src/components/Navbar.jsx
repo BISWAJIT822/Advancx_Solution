@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
@@ -6,6 +7,8 @@ const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,15 +35,25 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (e, targetId) => {
-    e.preventDefault();
-    setIsMobileMenuOpen(false);
+  const scrollToSection = (targetId) => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       window.scrollTo({
         top: targetElement.offsetTop - 80,
         behavior: 'smooth',
       });
+    }
+  };
+
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    // On a sub-page, go home first, then scroll to the section
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => scrollToSection(targetId), 120);
+    } else {
+      scrollToSection(targetId);
     }
   };
 

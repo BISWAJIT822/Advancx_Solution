@@ -1,14 +1,33 @@
 import React from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleScrollToTop = (e) => {
     e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    if (location.pathname !== '/') {
+      navigate('/');
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleSectionNav = (e, targetId) => {
+    e.preventDefault();
+    const scroll = () => {
+      const el = document.getElementById(targetId);
+      if (el) window.scrollTo({ top: el.offsetTop - 80, behavior: 'smooth' });
+    };
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scroll, 120);
+    } else {
+      scroll();
+    }
   };
 
   return (
@@ -43,10 +62,10 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4>Solutions</h4>
             <ul className="footer-links">
-              <li><a href="#services">Mobile Applications</a></li>
-              <li><a href="#services">Device Integrations</a></li>
-              <li><a href="#services">Billing Systems</a></li>
-              <li><a href="#services">Enterprise AI Platforms</a></li>
+              <li><a href="#services" onClick={(e) => handleSectionNav(e, 'services')}>Mobile Applications</a></li>
+              <li><a href="#services" onClick={(e) => handleSectionNav(e, 'services')}>Device Integrations</a></li>
+              <li><a href="#services" onClick={(e) => handleSectionNav(e, 'services')}>Billing Systems</a></li>
+              <li><a href="#services" onClick={(e) => handleSectionNav(e, 'services')}>Enterprise AI Platforms</a></li>
             </ul>
           </div>
 
@@ -54,10 +73,10 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4>Company</h4>
             <ul className="footer-links">
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#">Press Kit</a></li>
+              <li><a href="#about" onClick={(e) => handleSectionNav(e, 'about')}>About Us</a></li>
+              <li><a href="#" onClick={(e) => handleSectionNav(e, 'contact')}>Careers</a></li>
+              <li><a href="#contact" onClick={(e) => handleSectionNav(e, 'contact')}>Contact</a></li>
+              <li><a href="#" onClick={(e) => handleSectionNav(e, 'contact')}>Press Kit</a></li>
             </ul>
           </div>
 
@@ -65,10 +84,10 @@ const Footer = () => {
           <div className="footer-links-col">
             <h4>Resources</h4>
             <ul className="footer-links">
-              <li><a href="#">Documentation</a></li>
-              <li><a href="#">System Status</a></li>
-              <li><a href="#">Security Assurance</a></li>
-              <li><a href="#">Tech Blog</a></li>
+              <li><Link to="/documentation">Documentation</Link></li>
+              <li><Link to="/system-status">System Status</Link></li>
+              <li><Link to="/security-assurance">Security Assurance</Link></li>
+              <li><Link to="/tech-blog">Tech Blog</Link></li>
             </ul>
           </div>
         </div>
