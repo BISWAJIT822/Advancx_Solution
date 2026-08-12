@@ -35,9 +35,9 @@ const Stats = () => {
         {/* Stats Grid */}
         <div className="stats-grid reveal">
           <div className="stats-intro">
-            <h2>Built for Impact</h2>
+            <h2>Transforming Ideas Into Impact</h2>
             <p>
-              We build practical, high-performance websites, apps, and commerce platforms focused on real outcomes. From strategy and design to deployment and support, we keep it secure, scalable, and ROI-driven.
+              We design, build, and deploy systems that optimize workflows, scale seamlessly, and generate tangible efficiency gains for your business.
             </p>
           </div>
           
