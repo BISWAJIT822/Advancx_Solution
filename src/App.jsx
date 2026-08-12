@@ -5,6 +5,7 @@ import Stats from './components/Stats';
 import Features from './components/Features';
 import Services from './components/Services';
 import TechStack from './components/TechStack';
+import ProcessSection from './components/ProcessSection';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
@@ -54,6 +55,7 @@ function App() {
       <Features />
       <Services />
       <TechStack />
+      <ProcessSection />
       <ContactForm />
       <Footer />
     </div>

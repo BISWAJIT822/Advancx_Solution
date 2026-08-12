@@ -1806,3 +1806,130 @@ textarea.form-control {
     margin-top: -20px;
   }
 }
+
+/* ===== Product Development Process Section ===== */
+.process-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 95, 31, 0.022) 0 2px, transparent 2px 24px),
+    repeating-linear-gradient(-45deg, rgba(255, 95, 31, 0.018) 0 2px, transparent 2px 24px),
+    var(--bg-deep);
+}
+
+.process-header {
+  max-width: 940px;
+  margin-bottom: 56px;
+}
+
+.process-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.process-header h2 {
+  font-size: 46px;
+  line-height: 1.1;
+  font-weight: 800;
+  margin-bottom: 18px;
+}
+
+.process-header p {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 860px;
+}
+
+.process-steps {
+  display: flex;
+  gap: 0;
+  margin-top: 40px;
+}
+
+.process-step {
+  flex: 1;
+  position: relative;
+  padding: 6px 26px 0 26px;
+}
+
+/* Vertical divider marker at the top-left of each step */
+.process-step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 128px;
+  background: rgba(15, 23, 42, 0.12);
+  transition: var(--transition-smooth);
+}
+
+.process-step.active::before,
+.process-step:hover::before {
+  background: var(--primary-color);
+}
+
+.step-number {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 92px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(15, 23, 42, 0.14);
+  transition: var(--transition-smooth);
+}
+
+.process-step.active .step-number,
+.process-step:hover .step-number {
+  color: #f6a06a;
+  -webkit-text-stroke: 0;
+}
+
+.step-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-top: 18px;
+  color: var(--text-light);
+  transition: var(--transition-smooth);
+}
+
+.process-step.active .step-title,
+.process-step:hover .step-title {
+  color: var(--primary-color);
+}
+
+.step-desc {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  max-width: 230px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.process-step.active .step-desc,
+.process-step:hover .step-desc {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 900px) {
+  .process-header h2 { font-size: 34px; }
+  .process-steps { flex-wrap: wrap; row-gap: 40px; }
+  .process-step { flex: 0 0 50%; }
+  .step-number { font-size: 76px; }
+  .step-desc { opacity: 1; transform: none; }
+}
+
+@media (max-width: 560px) {
+  .process-step { flex: 0 0 100%; }
+}
