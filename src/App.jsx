@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Stats from './components/Stats';
 import Features from './components/Features';
 import Services from './components/Services';
+import TechStack from './components/TechStack';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 
@@ -52,6 +53,7 @@ function App() {
       <Stats />
       <Features />
       <Services />
+      <TechStack />
       <ContactForm />
       <Footer />
     </div>

@@ -660,6 +660,11 @@ button {
   }
 }
 
+/* Technologies strip: scroll the opposite direction for variety */
+.tech-scroll .partners-flex {
+  animation-direction: reverse;
+}
+
 .partner-logo {
   font-family: var(--font-heading);
   font-weight: 800;
