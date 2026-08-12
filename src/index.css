@@ -1971,6 +1971,14 @@ textarea.form-control {
   .process-step { flex: 0 0 100%; }
 }
 
+/* Tighten the gap between Stats and the Features section */
+#about {
+  padding-bottom: 44px;
+}
+.features-section {
+  padding-top: 48px;
+}
+
 /* ===== Industries We Serve (light section) ===== */
 .industries-section {
   position: relative;

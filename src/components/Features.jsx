@@ -38,7 +38,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="section" style={{ background: 'var(--bg-section-muted-1, rgba(6, 6, 8, 0.3))' }}>
+    <section className="section features-section" style={{ background: 'var(--bg-section-muted-1, rgba(6, 6, 8, 0.3))' }}>
       <div className="container">
         {/* Section Header */}
         <div className="features-header reveal">
