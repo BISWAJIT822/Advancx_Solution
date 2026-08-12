@@ -1,5 +1,5 @@
 import React from 'react';
-import { Code2, Smartphone, ShoppingCart, Boxes, ArrowRight } from 'lucide-react';
+import { Code2, Smartphone, ShoppingCart, Boxes, ArrowUpRight } from 'lucide-react';
 import Logo from './Logo';
 
 const Features = () => {
@@ -89,7 +89,7 @@ const Features = () => {
 
               <a href="#contact" className="btn-primary" onClick={handleScrollToContact}>
                 Get in Touch
-                <ArrowRight size={16} />
+                <ArrowUpRight size={16} />
               </a>
             </div>
           </div>
