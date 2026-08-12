@@ -2113,7 +2113,7 @@ textarea.form-control {
 @media (max-width: 640px) {
   /* Reduce the big hero top padding (inline 170px) on phones */
   .hero-section-wrapper {
-    padding-top: 104px !important;
+    padding-top: 116px !important;
   }
 
   /* Scale headings down so they fit small screens */
