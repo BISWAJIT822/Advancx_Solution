@@ -2130,7 +2130,7 @@ textarea.form-control {
   /* Let the hero CTA + text link wrap instead of overflowing */
   .hero-actions {
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 24px;
   }
 
   /* Stacked process steps: no dividers, flush, smaller numbers */
