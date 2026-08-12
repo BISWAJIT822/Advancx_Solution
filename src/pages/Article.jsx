@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ContactPopup from '../components/ContactPopup';
 import { getPost, posts } from '../data/blogPosts';
 
 const Article = () => {
@@ -68,9 +69,7 @@ const Article = () => {
 
             <div className="article-cta">
               <span>Have a project in mind?</span>
-              <Link to="/#contact" className="page-card-link">
-                Get in touch <ArrowUpRight size={14} />
-              </Link>
+              <ContactPopup triggerLabel="Get in touch" />
             </div>
           </div>
         </article>

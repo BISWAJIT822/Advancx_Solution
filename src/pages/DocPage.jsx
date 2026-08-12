@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ContactPopup from '../components/ContactPopup';
 import { getDoc, docs } from '../data/docsData';
 
 const DocPage = () => {
@@ -69,9 +70,7 @@ const DocPage = () => {
 
             <div className="article-cta">
               <span>Need a hand getting set up?</span>
-              <Link to="/#contact" className="page-card-link">
-                Talk to our team <ArrowUpRight size={14} />
-              </Link>
+              <ContactPopup triggerLabel="Talk to our team" />
             </div>
           </div>
         </article>
