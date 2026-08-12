@@ -2156,6 +2156,14 @@ textarea.form-control {
   .industries-section {
     padding: 64px 0;
   }
+
+  /* Tighter gap between Features and Industries on mobile */
+  .features-section {
+    padding-bottom: 36px;
+  }
+  .industries-section {
+    padding-top: 40px;
+  }
 }
 
 /* One-column industry grid on the smallest screens */
