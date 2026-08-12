@@ -1885,7 +1885,7 @@ textarea.form-control {
   font-weight: 800;
   letter-spacing: -0.03em;
   color: transparent;
-  -webkit-text-stroke: 2.5px rgba(15, 23, 42, 0.35);
+  -webkit-text-stroke: 1.5px #c3c9d2;
   transition: var(--transition-smooth);
 }
 
