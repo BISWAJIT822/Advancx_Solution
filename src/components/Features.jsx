@@ -1,6 +1,6 @@
 import React from 'react';
 import { Code2, Smartphone, ShoppingCart, Boxes, ArrowRight } from 'lucide-react';
-import orangeWave from '../assets/orange_3d_wave.png';
+import Logo from './Logo';
 
 const Features = () => {
   const handleScrollToContact = (e) => {
@@ -66,20 +66,24 @@ const Features = () => {
             ))}
           </div>
 
-          {/* Right Column: Large Featured Card */}
+          {/* Right Column: About Us Card */}
           <div className="card-premium featured-large-card">
-            <div className="featured-graphic">
-              <img src={orangeWave} alt="3D abstract orange wavy sculpture" />
+            <div className="about-logo-wrap">
+              <Logo variant="inline" height={58} />
             </div>
 
             <div className="featured-large-content">
-              <h3>Where Privacy Meets Performance Excellence</h3>
+              <span className="features-eyebrow">About Us</span>
+              <h3>Who We Are</h3>
               <p>
-                Designed to provide privacy, reliability, and security for modern businesses everywhere. Our zero-trust frameworks secure your core data pipeline.
+                Advancx Solution is a software studio building high-performance websites, mobile apps,
+                e-commerce platforms, and custom software for businesses worldwide. Driven by innovation,
+                we turn ideas into secure, scalable, ROI-driven products &mdash; handling everything from
+                strategy and design to deployment and support.
               </p>
 
               <a href="#contact" className="btn-primary" onClick={handleScrollToContact}>
-                Get Started
+                Get in Touch
                 <ArrowRight size={16} />
               </a>
             </div>
