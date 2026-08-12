@@ -102,7 +102,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Visit Us</h4>
-                  <p>100 Innovation Way, Suite 400, Tech City</p>
+                  <p>Advancx Solution, Baripada, Mayurbhanj, Odisha 757001, India</p>
                 </div>
               </div>
             </div>
