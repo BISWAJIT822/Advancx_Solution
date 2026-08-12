@@ -2155,3 +2155,11 @@ textarea.form-control {
 @media (max-width: 430px) {
   .industries-grid { grid-template-columns: 1fr; }
 }
+
+/* On phones the navbar 'Get in Touch' CTA overlaps the logo / pushes the
+   hamburger off-screen — hide it (navigation is in the hamburger menu). */
+@media (max-width: 600px) {
+  .header .btn-outline {
+    display: none !important;
+  }
+}
