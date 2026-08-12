@@ -2,6 +2,7 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Documentation from './pages/Documentation';
+import DocPage from './pages/DocPage';
 import SystemStatus from './pages/SystemStatus';
 import SecurityAssurance from './pages/SecurityAssurance';
 import TechBlog from './pages/TechBlog';
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/documentation" element={<Documentation />} />
+        <Route path="/documentation/:slug" element={<DocPage />} />
         <Route path="/system-status" element={<SystemStatus />} />
         <Route path="/security-assurance" element={<SecurityAssurance />} />
         <Route path="/tech-blog" element={<TechBlog />} />

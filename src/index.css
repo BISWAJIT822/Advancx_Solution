@@ -2454,6 +2454,17 @@ textarea.form-control {
   border-bottom: 1px solid var(--border-color);
 }
 
+/* Doc detail page header (icon + eyebrow) */
+.doc-article-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.doc-article-head .page-card-icon {
+  margin-bottom: 0;
+}
+
 .article-body {
   margin-top: 28px;
 }
