@@ -1877,6 +1877,14 @@ textarea.form-control {
   background: var(--primary-color);
 }
 
+/* First step: no leading divider, flush with the container/heading edge */
+.process-step:first-child {
+  padding-left: 0;
+}
+.process-step:first-child::before {
+  display: none;
+}
+
 .step-number {
   display: block;
   font-family: var(--font-heading);
