@@ -15,7 +15,6 @@ const steps = [
     n: '03',
     title: 'Development',
     desc: 'Our team use the right framework, features, tools, and technology based on your needs.',
-    active: true,
   },
   {
     n: '04',
