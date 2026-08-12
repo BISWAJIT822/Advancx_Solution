@@ -9,6 +9,7 @@ const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const navigate = useNavigate();
   const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -71,28 +72,28 @@ const Navbar = () => {
             <nav className="nav-links">
               <a
                 href="#home"
-                className={`nav-link ${activeSection === 'home' ? 'active' : ''}`}
+                className={`nav-link ${isHome && activeSection ==='home' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'home')}
               >
                 Home
               </a>
               <a
                 href="#about"
-                className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
+                className={`nav-link ${isHome && activeSection ==='about' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'about')}
               >
                 About
               </a>
               <a
                 href="#services"
-                className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
+                className={`nav-link ${isHome && activeSection ==='services' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'services')}
               >
                 Services
               </a>
               <a
                 href="#contact"
-                className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+                className={`nav-link ${isHome && activeSection ==='contact' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'contact')}
               >
                 Contact
@@ -135,28 +136,28 @@ const Navbar = () => {
 
         <a
           href="#home"
-          className={`mobile-nav-link ${activeSection === 'home' ? 'active' : ''}`}
+          className={`mobile-nav-link ${isHome && activeSection ==='home' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'home')}
         >
           Home
         </a>
         <a
           href="#about"
-          className={`mobile-nav-link ${activeSection === 'about' ? 'active' : ''}`}
+          className={`mobile-nav-link ${isHome && activeSection ==='about' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'about')}
         >
           About
         </a>
         <a
           href="#services"
-          className={`mobile-nav-link ${activeSection === 'services' ? 'active' : ''}`}
+          className={`mobile-nav-link ${isHome && activeSection ==='services' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'services')}
         >
           Services
         </a>
         <a
           href="#contact"
-          className={`mobile-nav-link ${activeSection === 'contact' ? 'active' : ''}`}
+          className={`mobile-nav-link ${isHome && activeSection ==='contact' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'contact')}
         >
           Contact
