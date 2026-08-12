@@ -665,6 +665,14 @@ button {
   animation-direction: reverse;
 }
 
+/* Show each technology in its full brand colour (set inline per item) */
+.tech-scroll .partner-logo {
+  opacity: 0.92;
+}
+.tech-scroll .partner-logo:hover {
+  opacity: 1;
+}
+
 .partner-logo {
   font-family: var(--font-heading);
   font-weight: 800;
