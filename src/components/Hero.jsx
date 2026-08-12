@@ -42,7 +42,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="section hero-section-wrapper" style={{ paddingTop: '88px', paddingBottom: '30px', position: 'relative' }}>
+    <section id="home" className="section hero-section-wrapper" style={{ paddingTop: '170px', paddingBottom: '30px', position: 'relative' }}>
 
       {/* Ambient AI / tech background decor */}
       <div className="hero-tech-decor" aria-hidden="true">
