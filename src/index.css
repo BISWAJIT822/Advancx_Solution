@@ -742,14 +742,31 @@ button {
 
 /* Features Section */
 .features-header {
-  max-width: 600px;
-  margin-bottom: 64px;
+  max-width: 940px;
+  margin-bottom: 56px;
+}
+
+.features-eyebrow {
+  display: inline-block;
+  color: var(--primary-color);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
 }
 
 .features-header h2 {
-  font-size: 40px;
-  margin-bottom: 16px;
+  font-size: 46px;
+  line-height: 1.1;
+  margin-bottom: 18px;
   font-weight: 800;
+}
+
+.features-header p {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 860px;
 }
 
 .features-grid {
