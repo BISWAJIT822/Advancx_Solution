@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Mail, Phone, X, ArrowUpRight } from 'lucide-react';
 
 const LinkedInIcon = ({ size = 18 }) => (
@@ -50,7 +51,7 @@ const ContactPopup = ({ triggerLabel = 'Talk to our team' }) => {
         {triggerLabel} <ArrowUpRight size={14} />
       </button>
 
-      {open && (
+      {open && createPortal(
         <div className="contact-popup-overlay" onClick={() => setOpen(false)}>
           <div
             className="contact-popup-card"
@@ -94,7 +95,8 @@ const ContactPopup = ({ triggerLabel = 'Talk to our team' }) => {
               })}
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );
