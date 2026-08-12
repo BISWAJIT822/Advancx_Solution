@@ -1231,7 +1231,9 @@ textarea.form-control {
   width: 100vw;
   height: 100vh;
   background: var(--mobile-menu-bg);
-  z-index: 99;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 200;
   display: flex;
   flex-direction: column;
   justify-content: center;
