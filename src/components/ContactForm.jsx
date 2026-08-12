@@ -150,7 +150,7 @@ const ContactForm = () => {
                   id="email"
                   name="email"
                   className="form-control"
-                  placeholder="Work Email"
+                  placeholder="Enter your email"
                   value={formData.email}
                   onChange={handleInputChange}
                   style={errors.email ? { borderColor: '#ef4444' } : {}}
