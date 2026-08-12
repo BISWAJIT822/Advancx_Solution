@@ -94,7 +94,7 @@ const Hero = () => {
                 Get started now
                 <ArrowRight size={16} style={{ marginLeft: '6px' }} />
               </a>
-              <a href="#solutions" className="btn-text-link" onClick={(e) => handleNavClick(e, 'solutions')}>
+              <a href="#about" className="btn-text-link" onClick={(e) => handleNavClick(e, 'about')}>
                 Learn more information
                 <ArrowUpRight size={16} style={{ marginLeft: '6px' }} />
               </a>
