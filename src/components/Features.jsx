@@ -1,5 +1,5 @@
 import React from 'react';
-import { Smartphone, Cpu, CreditCard, ArrowRight } from 'lucide-react';
+import { Code2, Smartphone, ShoppingCart, Boxes, ArrowRight } from 'lucide-react';
 import orangeWave from '../assets/orange_3d_wave.png';
 
 const Features = () => {
@@ -16,19 +16,24 @@ const Features = () => {
 
   const featureItems = [
     {
+      icon: <Code2 size={22} />,
+      title: 'Web Development',
+      desc: 'Fast, responsive, SEO-friendly websites and web apps built with modern frameworks like React and Next.js for a flawless user experience.',
+    },
+    {
       icon: <Smartphone size={22} />,
-      title: 'Mobile Applications',
-      desc: 'Innovative mobile apps carefully tailored to your special business needs, built using Flutter or React Native for cross-platform efficiency.',
+      title: 'Mobile Application',
+      desc: 'Innovative cross-platform mobile apps tailored to your business, built with Flutter or React Native for smooth performance on iOS and Android.',
     },
     {
-      icon: <Cpu size={22} />,
-      title: 'Integration With Devices',
-      desc: 'Seamless device integration designed to simplify your user experience, including IoT networks and embedded systems controls.',
+      icon: <ShoppingCart size={22} />,
+      title: 'E-Commerce Solutions',
+      desc: 'Scalable online stores with secure payments, inventory management, and conversion-focused design that turns visitors into loyal customers.',
     },
     {
-      icon: <CreditCard size={22} />,
-      title: 'Billing Systems',
-      desc: 'Smart billing and microtransaction systems built to simplify financial management, recurring subscriptions, and secure payment processing.',
+      icon: <Boxes size={22} />,
+      title: 'Custom Software',
+      desc: 'Bespoke software and internal tools engineered around your exact workflows, from process automation to dashboards and API integrations.',
     },
   ];
 
