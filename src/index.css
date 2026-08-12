@@ -665,6 +665,14 @@ button {
   animation-direction: reverse;
 }
 
+/* Technologies strip: more visible logos, and keep scrolling on hover */
+.tech-scroll .partner-logo {
+  opacity: 0.85;
+}
+.tech-scroll:hover .partners-flex {
+  animation-play-state: running;
+}
+
 .partner-logo {
   font-family: var(--font-heading);
   font-weight: 800;
