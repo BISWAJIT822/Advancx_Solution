@@ -5,6 +5,7 @@ import Documentation from './pages/Documentation';
 import SystemStatus from './pages/SystemStatus';
 import SecurityAssurance from './pages/SecurityAssurance';
 import TechBlog from './pages/TechBlog';
+import Article from './pages/Article';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/system-status" element={<SystemStatus />} />
         <Route path="/security-assurance" element={<SecurityAssurance />} />
         <Route path="/tech-blog" element={<TechBlog />} />
+        <Route path="/tech-blog/:slug" element={<Article />} />
       </Routes>
     </div>
   );
