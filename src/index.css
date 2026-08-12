@@ -1899,6 +1899,15 @@ textarea.form-control {
   display: none;
 }
 
+/* Last step: flush with the container right edge (aligns with the navbar CTA) */
+.process-step:last-child {
+  padding-right: 0;
+  text-align: right;
+}
+.process-step:last-child .step-desc {
+  margin-left: auto;
+}
+
 .step-number {
   display: block;
   font-family: var(--font-heading);
