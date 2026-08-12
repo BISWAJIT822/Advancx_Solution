@@ -1812,10 +1812,21 @@ textarea.form-control {
   position: relative;
   overflow: hidden;
   background-color: var(--bg-deep);
-  background-image:
-    repeating-linear-gradient(45deg, rgba(255, 95, 31, 0.04) 0 1px, transparent 1px 22px),
-    repeating-linear-gradient(-45deg, rgba(255, 95, 31, 0.04) 0 1px, transparent 1px 22px);
   padding-bottom: 40px;
+}
+
+/* Diagonal crosshatch pattern, faded at the top and bottom edges */
+.process-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 95, 31, 0.05) 0 1px, transparent 1px 22px),
+    repeating-linear-gradient(-45deg, rgba(255, 95, 31, 0.05) 0 1px, transparent 1px 22px);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%);
 }
 
 /* Tighten the gap into the Contact section */
