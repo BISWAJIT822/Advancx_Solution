@@ -42,7 +42,7 @@ const Features = () => {
       <div className="container">
         {/* Section Header */}
         <div className="features-header reveal">
-          <span className="features-eyebrow">What We Offer</span>
+          <span className="features-eyebrow">Why Choose Us</span>
           <h2>Driven by Innovation</h2>
           <p>
             We build practical, high-performance websites, apps, and commerce platforms focused on real outcomes. From strategy and design to deployment and support, we keep it secure, scalable, and ROI-driven.
