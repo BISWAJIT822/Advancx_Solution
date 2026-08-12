@@ -82,9 +82,7 @@ const Hero = () => {
             </div>
 
             <h1>
-              We Create World <br />
-              Advancing <span className="text-accent-color">Software</span> <br />
-              With Vision and Passion
+              We Create World Advancing <span className="text-accent-color">Software</span> With Vision and Passion
             </h1>
             
             <p>
