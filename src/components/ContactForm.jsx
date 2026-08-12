@@ -92,7 +92,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Call Us</h4>
-                  <p>+1 (555) 234-5678</p>
+                  <p><a href="tel:+919348386856" style={{ color: 'inherit', textDecoration: 'none' }}>+91 93483 86856</a></p>
                 </div>
               </div>
 
