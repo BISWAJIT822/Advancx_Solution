@@ -1994,13 +1994,14 @@ textarea.form-control {
 }
 .features-section {
   padding-top: 48px;
+  padding-bottom: 52px;
 }
 
 /* ===== Industries We Serve (light section) ===== */
 .industries-section {
   position: relative;
   overflow: hidden;
-  padding: 100px 0;
+  padding: 56px 0 100px;
   background: var(--bg-deep);
 }
 
