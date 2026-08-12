@@ -44,7 +44,7 @@ const Features = () => {
         <div className="features-header reveal">
           <h2>Driven by Innovation</h2>
           <p>
-            We transform ideas into powerful digital experiences that drive growth.
+            We build practical, high-performance websites, apps, and commerce platforms focused on real outcomes. From strategy and design to deployment and support, we keep it secure, scalable, and ROI-driven.
           </p>
         </div>
 
