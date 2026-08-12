@@ -84,13 +84,7 @@ const Features = () => {
               <p>
                 Based in Baripada, Odisha, our team blends clean engineering with thoughtful design to
                 help startups and enterprises launch faster and scale with confidence. We treat every
-                project as a long-term partnership, measuring success by the real results we deliver for
-                your business.
-              </p>
-              <p>
-                From the first idea to launch day and beyond, we stay hands-on &mdash; writing
-                maintainable code, obsessing over performance and security, and keeping you in the loop
-                at every step.
+                project as a long-term partnership, measuring success by the real results we deliver.
               </p>
 
               <a href="#contact" className="btn-primary" onClick={handleScrollToContact}>
