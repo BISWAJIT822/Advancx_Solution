@@ -86,7 +86,7 @@ const Hero = () => {
             </h1>
             
             <p>
-              We build high-performance websites, mobile apps, e-commerce platforms, and custom software that help businesses grow faster.
+              We build high-performance websites, mobile apps, <span style={{ whiteSpace: 'nowrap' }}>e-commerce</span> platforms, and custom software that help businesses grow faster.
             </p>
             
             <div className="hero-actions">
