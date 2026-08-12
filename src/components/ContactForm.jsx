@@ -119,6 +119,7 @@ const ContactForm = () => {
                     id="firstName"
                     name="firstName"
                     className="form-control"
+                    placeholder="First Name"
                     value={formData.firstName}
                     onChange={handleInputChange}
                     style={errors.firstName ? { borderColor: '#ef4444' } : {}}
@@ -133,6 +134,7 @@ const ContactForm = () => {
                     id="lastName"
                     name="lastName"
                     className="form-control"
+                    placeholder="Last Name"
                     value={formData.lastName}
                     onChange={handleInputChange}
                     style={errors.lastName ? { borderColor: '#ef4444' } : {}}
@@ -148,6 +150,7 @@ const ContactForm = () => {
                   id="email"
                   name="email"
                   className="form-control"
+                  placeholder="Work Email"
                   value={formData.email}
                   onChange={handleInputChange}
                   style={errors.email ? { borderColor: '#ef4444' } : {}}
@@ -163,6 +166,7 @@ const ContactForm = () => {
                     id="phone"
                     name="phone"
                     className="form-control"
+                    placeholder="Phone Number"
                     value={formData.phone}
                     onChange={handleInputChange}
                   />
@@ -175,6 +179,7 @@ const ContactForm = () => {
                     id="company"
                     name="company"
                     className="form-control"
+                    placeholder="Company Name"
                     value={formData.company}
                     onChange={handleInputChange}
                   />
@@ -187,6 +192,7 @@ const ContactForm = () => {
                   id="message"
                   name="message"
                   className="form-control"
+                  placeholder="Your Message"
                   value={formData.message}
                   onChange={handleInputChange}
                   style={errors.message ? { borderColor: '#ef4444' } : {}}
