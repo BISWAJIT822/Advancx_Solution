@@ -1882,18 +1882,15 @@ textarea.form-control {
   font-family: var(--font-heading);
   font-size: 96px;
   line-height: 1;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  color: transparent;
-  -webkit-text-stroke: 2px #9aa2af;
-  paint-order: stroke;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: rgba(15, 23, 42, 0.15);
   transition: var(--transition-smooth);
 }
 
 .process-step.active .step-number,
 .process-step:hover .step-number {
   color: var(--primary-color);
-  -webkit-text-stroke: 0;
 }
 
 .step-title {
