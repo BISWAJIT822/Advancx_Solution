@@ -1811,10 +1811,7 @@ textarea.form-control {
 .process-section {
   position: relative;
   overflow: hidden;
-  background:
-    repeating-linear-gradient(45deg, rgba(255, 95, 31, 0.022) 0 2px, transparent 2px 24px),
-    repeating-linear-gradient(-45deg, rgba(255, 95, 31, 0.018) 0 2px, transparent 2px 24px),
-    var(--bg-deep);
+  background: var(--bg-deep);
 }
 
 .process-header {
@@ -1882,7 +1879,7 @@ textarea.form-control {
   font-weight: 800;
   letter-spacing: -0.03em;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(15, 23, 42, 0.14);
+  -webkit-text-stroke: 2px rgba(15, 23, 42, 0.22);
   transition: var(--transition-smooth);
 }
 
