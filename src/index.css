@@ -1883,7 +1883,7 @@ textarea.form-control {
   font-size: 96px;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.09em;
   color: transparent;
   -webkit-text-stroke: 2px #9aa2af;
   paint-order: stroke;
