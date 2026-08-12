@@ -2133,6 +2133,21 @@ textarea.form-control {
     gap: 24px;
   }
 
+  /* Stack + center the 'Trusted by' block so it aligns cleanly */
+  .hero-trust {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .trust-avatars {
+    justify-content: center;
+  }
+  .trust-text {
+    text-align: center;
+  }
+  .trust-stars {
+    justify-content: center;
+  }
+
   /* Stacked process steps: no dividers, flush, smaller numbers */
   .process-step {
     padding-left: 0;
