@@ -2105,3 +2105,52 @@ textarea.form-control {
   .industries-grid { grid-template-columns: repeat(2, 1fr); }
   .industries-header h2 { font-size: 32px; }
 }
+
+/* ===== Global mobile responsiveness ===== */
+@media (max-width: 640px) {
+  /* Scale headings down so they fit small screens */
+  .hero-content h1 { font-size: 33px; }
+  .features-header h2,
+  .industries-header h2,
+  .process-header h2,
+  .stats-intro h2,
+  .contact-info-panel h2 {
+    font-size: 29px;
+    line-height: 1.2;
+  }
+
+  /* Let the hero CTA + text link wrap instead of overflowing */
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  /* Stacked process steps: no dividers, flush, smaller numbers */
+  .process-step {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .process-step::before {
+    display: none;
+  }
+  .step-number {
+    font-size: 60px;
+  }
+
+  /* Tighter industry cards on very small screens */
+  .industry-card {
+    padding: 30px 12px;
+    gap: 14px;
+  }
+
+  /* Trim big section paddings on mobile */
+  .section,
+  .industries-section {
+    padding: 64px 0;
+  }
+}
+
+/* One-column industry grid on the smallest screens */
+@media (max-width: 430px) {
+  .industries-grid { grid-template-columns: 1fr; }
+}
