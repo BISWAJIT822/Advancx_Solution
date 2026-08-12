@@ -1884,13 +1884,15 @@ textarea.form-control {
   line-height: 1;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: rgba(15, 23, 42, 0.14);
+  color: transparent;
+  -webkit-text-stroke: 2.5px rgba(15, 23, 42, 0.35);
   transition: var(--transition-smooth);
 }
 
 .process-step.active .step-number,
 .process-step:hover .step-number {
   color: var(--primary-color);
+  -webkit-text-stroke: 0;
 }
 
 .step-title {
