@@ -84,17 +84,6 @@ const Demo = () => {
                     tabIndex={-1}
                     sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
                   />
-                  <a
-                    className="demo-slide-overlay"
-                    href={d.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`Open ${d.name} in a new tab`}
-                  >
-                    <span>
-                      Open live site <ExternalLink size={14} />
-                    </span>
-                  </a>
                 </div>
               ))}
             </div>
@@ -106,9 +95,6 @@ const Demo = () => {
         </div>
 
         <div className="demo-controls">
-          <span className="demo-caption">
-            {current.name} <span className="demo-count">{index + 1} / {demos.length}</span>
-          </span>
           <div className="demo-dots">
             {demos.map((d, i) => (
               <button
@@ -125,6 +111,10 @@ const Demo = () => {
           <a href="#contact" className="btn-primary" onClick={scrollToContact}>
             Request a Demo
             <ArrowRight size={16} />
+          </a>
+          <a href={current.url} target="_blank" rel="noreferrer" className="demo-open-btn">
+            Open Live Site
+            <ExternalLink size={16} />
           </a>
         </div>
       </div>

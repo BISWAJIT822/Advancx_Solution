@@ -2762,32 +2762,23 @@ textarea.form-control {
   pointer-events: none;
 }
 
-/* Click-to-open overlay over the preview */
-.demo-slide-overlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding: 22px;
-  opacity: 0;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.42), rgba(15, 23, 42, 0) 42%);
-  transition: opacity 0.25s ease;
-}
-.demo-slide-overlay:hover {
-  opacity: 1;
-}
-.demo-slide-overlay span {
+/* Secondary 'Open Live Site' button next to the CTA */
+.demo-open-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: var(--transition-smooth);
+}
+.demo-open-btn:hover {
   background: var(--primary-color);
   color: #fff;
-  padding: 9px 18px;
-  border-radius: 9999px;
-  font-size: 13px;
-  font-weight: 700;
-  box-shadow: 0 8px 22px rgba(255, 95, 31, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(255, 95, 31, 0.28);
 }
 
 /* Side arrow buttons */
@@ -2816,11 +2807,11 @@ textarea.form-control {
 .demo-prev { left: -22px; }
 .demo-next { right: -22px; }
 
-/* Controls (caption + dots) */
+/* Controls (dots) */
 .demo-controls {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 16px;
   max-width: 980px;
   margin: 22px auto 0;
