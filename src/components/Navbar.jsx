@@ -16,7 +16,7 @@ const Navbar = () => {
       setIsSticky(window.scrollY > 50);
 
       // Section highlighters
-      const sections = ['home', 'about', 'services', 'contact'];
+      const sections = ['home', 'about', 'services', 'demo', 'contact'];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -92,6 +92,13 @@ const Navbar = () => {
                 Services
               </a>
               <a
+                href="#demo"
+                className={`nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
+                onClick={(e) => handleNavClick(e, 'demo')}
+              >
+                Demo
+              </a>
+              <a
                 href="#contact"
                 className={`nav-link ${isHome && activeSection ==='contact' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'contact')}
@@ -154,6 +161,13 @@ const Navbar = () => {
           onClick={(e) => handleNavClick(e, 'services')}
         >
           Services
+        </a>
+        <a
+          href="#demo"
+          className={`mobile-nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
+          onClick={(e) => handleNavClick(e, 'demo')}
+        >
+          Demo
         </a>
         <a
           href="#contact"

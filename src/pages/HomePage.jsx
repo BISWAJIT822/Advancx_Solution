@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import Stats from '../components/Stats';
 import Features from '../components/Features';
 import Services from '../components/Services';
+import Demo from '../components/Demo';
 import TechStack from '../components/TechStack';
 import ProcessSection from '../components/ProcessSection';
 import ContactForm from '../components/ContactForm';
@@ -47,6 +48,7 @@ const HomePage = () => {
       <Stats />
       <Features />
       <Services />
+      <Demo />
       <TechStack />
       <ProcessSection />
       <ContactForm />
