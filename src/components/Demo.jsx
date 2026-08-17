@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight } from 'lucide-react';
 
 const demos = [
@@ -13,8 +13,21 @@ const prettyUrl = (url) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 const Demo = () => {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
   const viewportRef = useRef(null);
   const current = demos[index];
+
+  // Auto-slide every 5s; resets on manual navigation, pauses on hover
+  useEffect(() => {
+    if (paused) return undefined;
+    const id = setTimeout(() => {
+      const nextI = (index + 1) % demos.length;
+      setIndex(nextI);
+      const vp = viewportRef.current;
+      if (vp) vp.scrollTo({ left: nextI * vp.clientWidth, behavior: 'smooth' });
+    }, 5000);
+    return () => clearTimeout(id);
+  }, [index, paused]);
 
   const goTo = (i) => {
     const clamped = (i + demos.length) % demos.length;
@@ -51,7 +64,11 @@ const Demo = () => {
           </p>
         </div>
 
-        <div className="demo-carousel">
+        <div
+          className="demo-carousel"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
           <button className="demo-nav-btn demo-prev" onClick={prev} aria-label="Previous demo">
             <ChevronLeft size={22} />
           </button>
