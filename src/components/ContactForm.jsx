@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
+// Web3Forms access key — get a free one at https://web3forms.com
+// (enter advancxsolution@gmail.com there; submissions are emailed to it).
+const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY';
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -13,6 +17,7 @@ const ContactForm = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState('');
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -39,28 +44,52 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API request
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phone: '',
-        company: '',
-        message: '',
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `New enquiry from ${formData.firstName} ${formData.lastName} — Advancx website`,
+          from_name: `${formData.firstName} ${formData.lastName}`,
+          name: `${formData.firstName} ${formData.lastName}`,
+          email: formData.email,
+          phone: formData.phone || 'Not provided',
+          company: formData.company || 'Not provided',
+          message: formData.message,
+        }),
       });
-      
-      // Reset success banner after 5 seconds
-      setTimeout(() => setSubmitSuccess(false), 5000);
-    }, 1500);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitSuccess(true);
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          company: '',
+          message: '',
+        });
+        setTimeout(() => setSubmitSuccess(false), 6000);
+      } else {
+        setSubmitError(data.message || 'Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      setSubmitError(
+        'Could not send your message. Please try again, or email us directly at advancxsolution@gmail.com.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -219,6 +248,12 @@ const ContactForm = () => {
               {submitSuccess && (
                 <div className="form-success-message">
                   Thank you! Your message has been sent successfully. We will get back to you shortly.
+                </div>
+              )}
+
+              {submitError && (
+                <div className="form-error-message">
+                  {submitError}
                 </div>
               )}
             </form>
