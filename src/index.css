@@ -2013,7 +2013,7 @@ textarea.form-control {
 .industries-section {
   position: relative;
   overflow: hidden;
-  padding: 56px 0 100px;
+  padding: 56px 0 52px;
   background: var(--bg-deep);
 }
 
@@ -2653,6 +2653,7 @@ textarea.form-control {
 .demo-section {
   position: relative;
   overflow: hidden;
+  padding-top: 56px;
 }
 .demo-header {
   max-width: 700px;
