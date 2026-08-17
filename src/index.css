@@ -665,9 +665,9 @@ button {
   animation-direction: reverse;
 }
 
-/* Tighter top padding so it sits closer to the Demo section above */
+/* Tighter padding so it sits closer to the sections around it */
 .partners-section.tech-section {
-  padding-top: 36px;
+  padding: 36px 0;
 }
 
 /* Technologies strip: more visible logos, and keep scrolling on hover */
@@ -1854,6 +1854,7 @@ textarea.form-control {
   position: relative;
   overflow: hidden;
   background-color: var(--bg-deep);
+  padding-top: 48px;
   padding-bottom: 40px;
 }
 
