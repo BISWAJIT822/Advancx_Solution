@@ -51,8 +51,8 @@ const Footer = () => {
               </a>
               <a href="#" className="social-link" aria-label="Fiverr">
                 <svg viewBox="0 0 24 24" width="18" height="18">
-                  <rect x="1.5" y="1.5" width="21" height="21" rx="5" fill="currentColor" />
-                  <text x="12" y="17.2" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontSize="14" fontWeight="700" style={{ fill: 'var(--footer-bg)' }}>fi</text>
+                  <circle cx="12" cy="12" r="12" fill="currentColor" />
+                  <text x="12" y="16.6" textAnchor="middle" fontFamily="Arial, Helvetica, sans-serif" fontSize="13" fontWeight="700" style={{ fill: 'var(--footer-bg)' }}>fi</text>
                 </svg>
               </a>
               <a href="#" className="social-link" aria-label="Instagram">
