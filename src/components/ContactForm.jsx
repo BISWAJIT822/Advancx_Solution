@@ -3,7 +3,7 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 // Web3Forms access key — get a free one at https://web3forms.com
 // (enter advancxsolution@gmail.com there; submissions are emailed to it).
-const WEB3FORMS_ACCESS_KEY = 'REPLACE_WITH_YOUR_WEB3FORMS_ACCESS_KEY';
+const WEB3FORMS_ACCESS_KEY = '146af91c-90fd-4b7c-bc1b-5f1b607fd50b';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
