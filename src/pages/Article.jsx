@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -9,10 +9,6 @@ import { getPost, posts } from '../data/blogPosts';
 const Article = () => {
   const { slug } = useParams();
   const post = getPost(slug);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
 
   if (!post) {
     return (

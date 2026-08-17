@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 const PageLayout = ({ eyebrow, title, intro, children }) => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
+  // Scroll-to-top on navigation is handled globally by <ScrollToTop /> in App.
   return (
     <>
       <Navbar />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
@@ -9,10 +9,6 @@ import { getDoc, docs } from '../data/docsData';
 const DocPage = () => {
   const { slug } = useParams();
   const doc = getDoc(slug);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [slug]);
 
   if (!doc) {
     return (
