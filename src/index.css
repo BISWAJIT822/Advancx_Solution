@@ -2884,3 +2884,45 @@ textarea.form-control {
   .demo-next { right: 8px; }
   .demo-url { max-width: 52%; }
 }
+
+/* ===== Legal Pages ===== */
+.legal-container {
+  max-width: 820px;
+}
+.legal-effective {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 34px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
+}
+.legal-section {
+  margin-bottom: 32px;
+}
+.legal-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-light);
+  font-family: var(--font-heading);
+  margin: 0 0 12px;
+}
+.legal-section p {
+  font-size: 15.5px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  margin: 0 0 12px;
+}
+.legal-section ul {
+  margin: 8px 0 12px;
+  padding-left: 22px;
+  list-style: disc;
+}
+.legal-section li {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.legal-section li::marker {
+  color: var(--primary-color);
+}

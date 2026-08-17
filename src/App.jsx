@@ -7,6 +7,7 @@ import SystemStatus from './pages/SystemStatus';
 import SecurityAssurance from './pages/SecurityAssurance';
 import TechBlog from './pages/TechBlog';
 import Article from './pages/Article';
+import LegalPage from './pages/LegalPage';
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
         <Route path="/security-assurance" element={<SecurityAssurance />} />
         <Route path="/tech-blog" element={<TechBlog />} />
         <Route path="/tech-blog/:slug" element={<Article />} />
+        <Route path="/privacy-policy" element={<LegalPage slug="privacy-policy" />} />
+        <Route path="/terms-of-service" element={<LegalPage slug="terms-of-service" />} />
+        <Route path="/sla-agreement" element={<LegalPage slug="sla-agreement" />} />
       </Routes>
     </div>
   );
