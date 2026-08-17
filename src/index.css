@@ -665,6 +665,11 @@ button {
   animation-direction: reverse;
 }
 
+/* Tighter top padding so it sits closer to the Demo section above */
+.partners-section.tech-section {
+  padding-top: 36px;
+}
+
 /* Technologies strip: more visible logos, and keep scrolling on hover */
 .tech-scroll .partner-logo {
   opacity: 0.85;
@@ -2654,6 +2659,7 @@ textarea.form-control {
   position: relative;
   overflow: hidden;
   padding-top: 56px;
+  padding-bottom: 44px;
 }
 .demo-header {
   max-width: 700px;
