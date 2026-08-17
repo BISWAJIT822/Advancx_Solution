@@ -83,7 +83,7 @@ const ContactForm = () => {
       } else {
         setSubmitError(data.message || 'Something went wrong. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setSubmitError(
         'Could not send your message. Please try again, or email us directly at advancxsolution@gmail.com.'
       );
