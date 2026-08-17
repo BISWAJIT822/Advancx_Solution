@@ -96,7 +96,7 @@ const Navbar = () => {
                 className={`nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
                 onClick={(e) => handleNavClick(e, 'demo')}
               >
-                Demo
+                Demos
               </a>
               <a
                 href="#contact"
@@ -167,7 +167,7 @@ const Navbar = () => {
           className={`mobile-nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
           onClick={(e) => handleNavClick(e, 'demo')}
         >
-          Demo
+          Demos
         </a>
         <a
           href="#contact"
