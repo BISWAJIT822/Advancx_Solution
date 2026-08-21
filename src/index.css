@@ -2928,13 +2928,19 @@ textarea.form-control {
 }
 
 /* ===== Google Translate: hide the default widget + top banner ===== */
+/* Top translation banner (covers old + new widget class names) */
+.goog-te-banner-frame,
 .goog-te-banner-frame.skiptranslate,
+iframe.skiptranslate,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-ORHb,
 .goog-te-gadget-icon,
 #goog-gt-tt,
 .goog-te-balloon-frame,
 .goog-tooltip,
 .goog-tooltip:hover {
   display: none !important;
+  visibility: hidden !important;
 }
 .goog-te-gadget {
   height: 0;
@@ -2948,6 +2954,7 @@ textarea.form-control {
   height: 0;
   overflow: hidden;
 }
+/* Google pushes the page down with body { top: 40px } — force it back up */
 body {
   top: 0 !important;
   position: static !important;
