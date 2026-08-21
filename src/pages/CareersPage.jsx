@@ -1,7 +1,7 @@
 import React from 'react';
 import { Briefcase, MapPin, Clock } from 'lucide-react';
 import PageLayout from './PageLayout';
-import ContactPopup from '../components/ContactPopup';
+import ApplyPopup from '../components/ApplyPopup';
 
 // Placeholder openings — edit titles/details or add real positions.
 const positions = [
@@ -60,7 +60,7 @@ const CareersPage = () => (
                 </div>
               </div>
               <div className="career-apply">
-                <ContactPopup triggerLabel="Apply Now" />
+                <ApplyPopup position={p.title} triggerLabel="Apply Now" />
               </div>
             </div>
           ))}
@@ -68,7 +68,7 @@ const CareersPage = () => (
 
         <div className="careers-footer-cta">
           <span>Don&apos;t see your role? We&apos;d still love to hear from you.</span>
-          <ContactPopup triggerLabel="Get in Touch" />
+          <ApplyPopup triggerLabel="Send Application" />
         </div>
       </div>
     </section>

@@ -3218,3 +3218,127 @@ body {
     align-self: stretch;
   }
 }
+
+/* ===== Apply (job application) form modal ===== */
+.apply-popup-card {
+  max-width: 540px;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: left;
+}
+.apply-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+.apply-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.apply-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.apply-field label {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.apply-field input,
+.apply-field textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 9px;
+  background: var(--bg-surface);
+  color: var(--text-light);
+  font-size: 14px;
+  font-family: inherit;
+  transition: var(--transition-fast);
+}
+.apply-field input::placeholder,
+.apply-field textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+.apply-field input:focus,
+.apply-field textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(255, 95, 31, 0.12);
+}
+.apply-field textarea {
+  resize: vertical;
+  min-height: 92px;
+}
+.apply-field input.has-error,
+.apply-field textarea.has-error {
+  border-color: #ef4444;
+}
+.apply-err {
+  font-size: 11px;
+  color: #ef4444;
+}
+.apply-file {
+  cursor: pointer;
+}
+.apply-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px dashed var(--border-color);
+  border-radius: 9px;
+  background: var(--bg-surface-light);
+  color: var(--text-muted);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: var(--transition-fast);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.apply-file:hover .apply-file-btn {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.apply-file-btn svg {
+  flex-shrink: 0;
+  color: var(--primary-color);
+}
+.apply-submit {
+  justify-content: center;
+  margin-top: 6px;
+}
+.apply-success {
+  text-align: center;
+  padding: 22px 6px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.apply-success svg {
+  color: #16a34a;
+}
+.apply-success h3 {
+  margin: 0;
+}
+.apply-success p {
+  color: var(--text-muted);
+  margin: 0;
+}
+.apply-success .btn-primary {
+  margin-top: 8px;
+}
+@media (max-width: 480px) {
+  .apply-row {
+    grid-template-columns: 1fr;
+  }
+}
