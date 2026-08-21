@@ -194,6 +194,7 @@ const ApplyPopup = ({ position = '', triggerLabel = 'Apply Now' }) => {
                           name="position"
                           value={form.position}
                           onChange={handleChange}
+                          readOnly={Boolean(position)}
                           placeholder="Role you're applying for"
                         />
                       </div>

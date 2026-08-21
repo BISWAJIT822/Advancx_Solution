@@ -3280,6 +3280,15 @@ body {
 .apply-field textarea.has-error {
   border-color: #ef4444;
 }
+.apply-field input[readonly] {
+  background: var(--bg-surface-light);
+  color: var(--text-muted);
+  cursor: default;
+}
+.apply-field input[readonly]:focus {
+  border-color: var(--border-color);
+  box-shadow: none;
+}
 .apply-err {
   font-size: 11px;
   color: #ef4444;
