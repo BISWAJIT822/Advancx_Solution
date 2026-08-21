@@ -2926,3 +2926,125 @@ textarea.form-control {
 .legal-section li::marker {
   color: var(--primary-color);
 }
+
+/* ===== Google Translate: hide the default widget + top banner ===== */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-gadget-icon,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-te-gadget {
+  height: 0;
+  font-size: 0;
+  overflow: hidden;
+}
+#google_translate_element {
+  position: absolute !important;
+  left: -9999px;
+  top: -9999px;
+  height: 0;
+  overflow: hidden;
+}
+body {
+  top: 0 !important;
+  position: static !important;
+}
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* ===== Language Switcher (navbar) ===== */
+.lang-switcher {
+  position: relative;
+}
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-light);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+.lang-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+.lang-btn-code {
+  letter-spacing: 0.02em;
+}
+.lang-caret {
+  transition: transform 0.2s ease;
+}
+.lang-caret.open {
+  transform: rotate(180deg);
+}
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 224px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 20px 45px -15px rgba(15, 23, 42, 0.28);
+  padding: 6px;
+  margin: 0;
+  list-style: none;
+  z-index: 1200;
+}
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text-light);
+  font-size: 13.5px;
+  transition: var(--transition-fast);
+}
+.lang-item:hover {
+  background: rgba(255, 95, 31, 0.08);
+}
+.lang-item.active {
+  background: rgba(255, 95, 31, 0.12);
+  font-weight: 600;
+}
+.lang-item-code {
+  flex-shrink: 0;
+  width: 28px;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--primary-color);
+}
+.lang-item-name {
+  color: var(--text-muted);
+}
+.lang-item.active .lang-item-name {
+  color: var(--primary-color);
+}
+@media (max-width: 480px) {
+  .lang-btn {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+  .lang-menu {
+    min-width: 200px;
+  }
+}

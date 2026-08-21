@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from './Logo';
+import LanguageSwitcher from './LanguageSwitcher';
 import { Menu, X, ArrowRight } from 'lucide-react';
 
 const Navbar = () => {
@@ -109,6 +110,8 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <LanguageSwitcher />
+
               <a
                 href="#contact"
                 className="btn-outline"

@@ -34,6 +34,37 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- Hidden host for the Google Website Translator (driven by our custom navbar switcher) -->
+    <div id="google_translate_element" aria-hidden="true"></div>
+
+    <script>
+      // Guard against React crashes when Google Translate mutates text nodes.
+      // (Well-known fix: no-op removeChild/insertBefore when the parent no longer matches.)
+      (function () {
+        if (typeof Node === 'function' && Node.prototype) {
+          var _removeChild = Node.prototype.removeChild;
+          Node.prototype.removeChild = function (child) {
+            if (child.parentNode !== this) return child;
+            return _removeChild.apply(this, arguments);
+          };
+          var _insertBefore = Node.prototype.insertBefore;
+          Node.prototype.insertBefore = function (newNode, referenceNode) {
+            if (referenceNode && referenceNode.parentNode !== this) return newNode;
+            return _insertBefore.apply(this, arguments);
+          };
+        }
+      })();
+      function googleTranslateElementInit() {
+        /* global google */
+        new google.translate.TranslateElement(
+          { pageLanguage: 'en', autoDisplay: false },
+          'google_translate_element'
+        );
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
