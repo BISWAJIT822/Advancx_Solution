@@ -79,7 +79,7 @@ const Footer = () => {
               <li><a href="#about" onClick={(e) => handleSectionNav(e, 'about')}>About Us</a></li>
               <li><Link to="/members">Members</Link></li>
               <li><Link to="/gallery">Gallery</Link></li>
-              <li><Link to="/tech-blog">Articles</Link></li>
+              <li><Link to="/careers">Careers</Link></li>
             </ul>
           </div>
 

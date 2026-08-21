@@ -10,6 +10,7 @@ import Article from './pages/Article';
 import LegalPage from './pages/LegalPage';
 import MembersPage from './pages/MembersPage';
 import GalleryPage from './pages/GalleryPage';
+import CareersPage from './pages/CareersPage';
 
 // Scroll to the top of the page whenever the route path changes
 function ScrollToTop() {
@@ -55,6 +56,7 @@ function App() {
         <Route path="/sla-agreement" element={<LegalPage slug="sla-agreement" />} />
         <Route path="/members" element={<MembersPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
+        <Route path="/careers" element={<CareersPage />} />
       </Routes>
     </div>
   );
