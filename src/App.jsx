@@ -8,6 +8,8 @@ import SecurityAssurance from './pages/SecurityAssurance';
 import TechBlog from './pages/TechBlog';
 import Article from './pages/Article';
 import LegalPage from './pages/LegalPage';
+import MembersPage from './pages/MembersPage';
+import GalleryPage from './pages/GalleryPage';
 
 // Scroll to the top of the page whenever the route path changes
 function ScrollToTop() {
@@ -51,6 +53,8 @@ function App() {
         <Route path="/privacy-policy" element={<LegalPage slug="privacy-policy" />} />
         <Route path="/terms-of-service" element={<LegalPage slug="terms-of-service" />} />
         <Route path="/sla-agreement" element={<LegalPage slug="sla-agreement" />} />
+        <Route path="/members" element={<MembersPage />} />
+        <Route path="/gallery" element={<GalleryPage />} />
       </Routes>
     </div>
   );
