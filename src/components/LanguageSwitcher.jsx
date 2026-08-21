@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Globe, ChevronDown } from 'lucide-react';
+import { Globe } from 'lucide-react';
 
 // Short code (for the navbar button) + Google Translate language code + display name.
 const LANGUAGES = [
@@ -91,8 +91,6 @@ const LanguageSwitcher = () => {
     window.location.reload();
   };
 
-  const cur = LANGUAGES.find((l) => l.code === current) || LANGUAGES[0];
-
   return (
     <div className="lang-switcher notranslate" translate="no" ref={ref}>
       <button
@@ -103,9 +101,7 @@ const LanguageSwitcher = () => {
         aria-expanded={open}
         aria-label="Select language"
       >
-        <Globe size={15} />
-        <span className="lang-btn-code">{cur.short}</span>
-        <ChevronDown size={13} className={`lang-caret ${open ? 'open' : ''}`} />
+        <Globe size={18} />
       </button>
 
       {open && (

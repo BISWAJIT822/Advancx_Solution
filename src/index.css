@@ -2971,14 +2971,12 @@ body {
 .lang-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: 9999px;
+  justify-content: center;
+  padding: 9px;
+  border-radius: 50%;
   border: 1px solid var(--border-color);
   background: var(--bg-surface);
   color: var(--text-light);
-  font-weight: 600;
-  font-size: 13px;
   cursor: pointer;
   transition: var(--transition-fast);
 }
