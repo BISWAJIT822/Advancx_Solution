@@ -33,22 +33,30 @@ const LANGUAGES = [
 
 const STORAGE_KEY = 'advancx_lang';
 
-// Drive the hidden Google Translate <select> to translate the page in place.
-const applyLanguage = (code) => {
-  const trigger = () => {
-    const combo = document.querySelector('.goog-te-combo');
-    if (!combo) return false;
-    combo.value = code === 'en' ? '' : code;
-    combo.dispatchEvent(new Event('change'));
-    return true;
-  };
-  if (trigger()) return;
-  // The widget may not have injected the <select> yet — retry briefly.
-  let tries = 0;
-  const id = setInterval(() => {
-    tries += 1;
-    if (trigger() || tries > 50) clearInterval(id);
-  }, 200);
+// Google Translate reads the `googtrans` cookie on load and applies the
+// target language. Setting it (on every relevant scope) + reloading is the
+// most reliable way to switch and persist the language.
+const setGoogTransCookie = (code) => {
+  const host = window.location.hostname;
+  const scopes = ['', `;domain=${host}`, `;domain=.${host}`];
+  // Clear any existing value first.
+  scopes.forEach((s) => {
+    document.cookie = `googtrans=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/${s}`;
+  });
+  if (code && code !== 'en') {
+    const value = `/en/${code}`;
+    const expires = new Date(Date.now() + 30 * 864e5).toUTCString();
+    scopes.forEach((s) => {
+      document.cookie = `googtrans=${value};expires=${expires};path=/${s}`;
+    });
+  }
+};
+
+const getSavedLang = () => {
+  // Prefer the cookie (what Google is actually showing), fall back to storage.
+  const match = document.cookie.match(/googtrans=\/[^/]+\/([^;]+)/);
+  if (match && match[1]) return decodeURIComponent(match[1]);
+  return localStorage.getItem(STORAGE_KEY) || 'en';
 };
 
 const LanguageSwitcher = () => {
@@ -56,11 +64,8 @@ const LanguageSwitcher = () => {
   const [current, setCurrent] = useState('en');
   const ref = useRef(null);
 
-  // Re-apply the saved language on load (once Google Translate is ready).
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) || 'en';
-    setCurrent(saved);
-    if (saved !== 'en') applyLanguage(saved);
+    setCurrent(getSavedLang());
   }, []);
 
   // Close the dropdown on outside click / Escape.
@@ -78,15 +83,12 @@ const LanguageSwitcher = () => {
   }, []);
 
   const select = (code) => {
-    setCurrent(code);
     setOpen(false);
+    if (code === current) return;
     localStorage.setItem(STORAGE_KEY, code);
-    if (code === 'en') {
-      // Cleanest way back to the untranslated page.
-      window.location.reload();
-      return;
-    }
-    applyLanguage(code);
+    setGoogTransCookie(code);
+    // Reload so Google Translate re-reads the cookie and applies it cleanly.
+    window.location.reload();
   };
 
   const cur = LANGUAGES.find((l) => l.code === current) || LANGUAGES[0];
