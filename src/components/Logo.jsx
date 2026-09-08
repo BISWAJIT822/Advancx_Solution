@@ -1,7 +1,7 @@
 import React from 'react';
 import homeLogo from '../assets/home_logo.png';
 
-const Logo = ({ variant = 'inline', className = '', height = 40 }) => {
+const Logo = ({ className = '', height = 40 }) => {
   return (
     <div 
       className={`logo-container ${className}`} 

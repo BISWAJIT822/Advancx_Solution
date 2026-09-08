@@ -1,10 +1,8 @@
-import { Rocket, BookOpen, Code2, Boxes, Plug, LifeBuoy } from 'lucide-react';
-
 // Shared documentation data used by the Docs list and detail pages.
 export const docs = [
   {
     slug: 'getting-started',
-    icon: Rocket,
+    icon: 'Rocket',
     title: 'Getting Started',
     desc: 'Set up your project, configure environments, and ship your first build in minutes.',
     content: [
@@ -19,7 +17,7 @@ export const docs = [
   },
   {
     slug: 'guides-tutorials',
-    icon: BookOpen,
+    icon: 'BookOpen',
     title: 'Guides & Tutorials',
     desc: 'Step-by-step walkthroughs for common workflows, from auth to payments and deployment.',
     content: [
@@ -34,7 +32,7 @@ export const docs = [
   },
   {
     slug: 'api-reference',
-    icon: Code2,
+    icon: 'Code2',
     title: 'API Reference',
     desc: 'Complete REST and GraphQL endpoints with request/response examples and error codes.',
     content: [
@@ -49,7 +47,7 @@ export const docs = [
   },
   {
     slug: 'sdks-libraries',
-    icon: Boxes,
+    icon: 'Boxes',
     title: 'SDKs & Libraries',
     desc: 'Official client libraries for JavaScript, Python, Flutter, and more, with quick installs.',
     content: [
@@ -64,7 +62,7 @@ export const docs = [
   },
   {
     slug: 'integrations',
-    icon: Plug,
+    icon: 'Plug',
     title: 'Integrations',
     desc: 'Connect third-party services, webhooks, and internal tools with ready-made connectors.',
     content: [
@@ -79,7 +77,7 @@ export const docs = [
   },
   {
     slug: 'support-faq',
-    icon: LifeBuoy,
+    icon: 'LifeBuoy',
     title: 'Support & FAQ',
     desc: 'Troubleshooting tips, best practices, and answers to the questions we hear most.',
     content: [
@@ -93,5 +91,3 @@ export const docs = [
     ],
   },
 ];
-
-export const getDoc = (slug) => docs.find((d) => d.slug === slug);

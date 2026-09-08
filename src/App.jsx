@@ -11,6 +11,7 @@ import LegalPage from './pages/LegalPage';
 import MembersPage from './pages/MembersPage';
 import GalleryPage from './pages/GalleryPage';
 import CareersPage from './pages/CareersPage';
+import AdminPage from './admin/AdminPage';
 
 // Scroll to the top of the page whenever the route path changes
 function ScrollToTop() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/members" element={<MembersPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/careers" element={<CareersPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </div>
   );

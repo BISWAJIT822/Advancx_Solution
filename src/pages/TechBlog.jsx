@@ -2,15 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import PageLayout from './PageLayout';
-import { posts } from '../data/blogPosts';
+import { useContent } from '../content/ContentContext';
 
 const TechBlog = () => {
+  const { eyebrow, title, intro, posts } = useContent('blogPage');
+
   return (
-    <PageLayout
-      eyebrow="Resources"
-      title="Tech Blog"
-      intro="Notes from the Advancx team on building modern software, mobile apps, and AI, straight from real client work."
-    >
+    <PageLayout eyebrow={eyebrow} title={title} intro={intro}>
       <section className="section page-section">
         <div className="container">
           <div className="page-grid blog-grid">

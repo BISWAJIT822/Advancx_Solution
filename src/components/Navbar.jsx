@@ -1,23 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { useContent } from '../content/ContentContext';
 
 const Navbar = () => {
+  const nav = useContent('nav');
+  const heroCta = useContent('hero').primaryCta;
   const [isSticky, setIsSticky] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/';
+  // Stable identity so the scroll listener effect does not re-subscribe each render.
+  const navTargets = useMemo(() => nav.links.map((l) => l.target), [nav.links]);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 50);
 
       // Section highlighters
-      const sections = ['home', 'about', 'services', 'demo', 'contact'];
+      const sections = navTargets;
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -35,7 +40,7 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [navTargets]);
 
   const scrollToSection = (targetId) => {
     const targetElement = document.getElementById(targetId);
@@ -66,46 +71,21 @@ const Navbar = () => {
           <div className="nav-wrapper">
             {/* Reconstructed Logo */}
             <a href="#home" onClick={(e) => handleNavClick(e, 'home')}>
-              <Logo variant="inline" height={44} />
+              <Logo height={44} />
             </a>
 
             {/* Navigation Links */}
             <nav className="nav-links">
-              <a
-                href="#home"
-                className={`nav-link ${isHome && activeSection ==='home' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'home')}
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className={`nav-link ${isHome && activeSection ==='about' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'about')}
-              >
-                About
-              </a>
-              <a
-                href="#services"
-                className={`nav-link ${isHome && activeSection ==='services' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'services')}
-              >
-                Services
-              </a>
-              <a
-                href="#demo"
-                className={`nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'demo')}
-              >
-                Demos
-              </a>
-              <a
-                href="#contact"
-                className={`nav-link ${isHome && activeSection ==='contact' ? 'active' : ''}`}
-                onClick={(e) => handleNavClick(e, 'contact')}
-              >
-                Contact
-              </a>
+              {nav.links.map((link) => (
+                <a
+                  key={link.target}
+                  href={`#${link.target}`}
+                  className={`nav-link ${isHome && activeSection === link.target ? 'active' : ''}`}
+                  onClick={(e) => handleNavClick(e, link.target)}
+                >
+                  {link.label}
+                </a>
+              ))}
             </nav>
 
             {/* CTA Button */}
@@ -118,7 +98,7 @@ const Navbar = () => {
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
                 onClick={(e) => handleNavClick(e, 'contact')}
               >
-                Get in Touch
+                {nav.ctaLabel}
                 <ArrowRight size={14} />
               </a>
 
@@ -144,41 +124,16 @@ const Navbar = () => {
           <X size={28} />
         </button>
 
-        <a
-          href="#home"
-          className={`mobile-nav-link ${isHome && activeSection ==='home' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'home')}
-        >
-          Home
-        </a>
-        <a
-          href="#about"
-          className={`mobile-nav-link ${isHome && activeSection ==='about' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'about')}
-        >
-          About
-        </a>
-        <a
-          href="#services"
-          className={`mobile-nav-link ${isHome && activeSection ==='services' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'services')}
-        >
-          Services
-        </a>
-        <a
-          href="#demo"
-          className={`mobile-nav-link ${isHome && activeSection ==='demo' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'demo')}
-        >
-          Demos
-        </a>
-        <a
-          href="#contact"
-          className={`mobile-nav-link ${isHome && activeSection ==='contact' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'contact')}
-        >
-          Contact
-        </a>
+        {nav.links.map((link) => (
+          <a
+            key={link.target}
+            href={`#${link.target}`}
+            className={`mobile-nav-link ${isHome && activeSection === link.target ? 'active' : ''}`}
+            onClick={(e) => handleNavClick(e, link.target)}
+          >
+            {link.label}
+          </a>
+        ))}
 
         <div style={{ marginTop: '24px' }}>
           <a
@@ -186,7 +141,7 @@ const Navbar = () => {
             className="btn-primary"
             onClick={(e) => handleNavClick(e, 'contact')}
           >
-            Get started now
+            {heroCta}
             <ArrowRight size={16} />
           </a>
         </div>

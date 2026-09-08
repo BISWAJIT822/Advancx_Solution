@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import PageLayout from './PageLayout';
-import { getLegalPage } from '../data/legalData';
+import { useContent } from '../content/ContentContext';
 
 const LegalPage = ({ slug: slugProp }) => {
   const params = useParams();
   const slug = slugProp || params.slug;
-  const page = getLegalPage(slug);
+  const legal = useContent('legal');
+  const page = legal[slug];
 
   if (!page) {
     return (

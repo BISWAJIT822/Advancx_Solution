@@ -1,17 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, ArrowRight } from 'lucide-react';
-
-const demos = [
-  { name: 'College Website', url: 'https://college-website-template-kappa.vercel.app/' },
-  { name: 'NGO Website', url: 'https://ngowebsite-azure.vercel.app/' },
-  { name: 'Resort Website', url: 'https://resort-website-3yb2.vercel.app/' },
-  { name: 'Club Website', url: 'https://clubwebsite-six.vercel.app/' },
-  { name: 'Coaching Website', url: 'https://coaching-web-three.vercel.app/' },
-];
+import { useContent } from '../content/ContentContext';
 
 const prettyUrl = (url) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
 const Demo = () => {
+  const { eyebrow, heading, intro, primaryCta, secondaryCta, items: demos } = useContent('demo');
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const viewportRef = useRef(null);
@@ -27,7 +21,7 @@ const Demo = () => {
       if (vp) vp.scrollTo({ left: nextI * vp.clientWidth, behavior: 'smooth' });
     }, 5000);
     return () => clearTimeout(id);
-  }, [index, paused]);
+  }, [index, paused, demos.length]);
 
   const goTo = (i) => {
     const clamped = (i + demos.length) % demos.length;
@@ -56,12 +50,9 @@ const Demo = () => {
     <section id="demo" className="section demo-section">
       <div className="container">
         <div className="demo-header reveal">
-          <span className="features-eyebrow">Live Demos</span>
-          <h2>See Advancx in Action</h2>
-          <p>
-            Explore real websites we&apos;ve designed and built. Use the arrows to browse through our
-            live demos, then request one tailored to your business.
-          </p>
+          <span className="features-eyebrow">{eyebrow}</span>
+          <h2>{heading}</h2>
+          <p>{intro}</p>
         </div>
 
         <div
@@ -126,11 +117,11 @@ const Demo = () => {
 
         <div className="demo-actions">
           <a href="#contact" className="btn-primary" onClick={scrollToContact}>
-            Request a Demo
+            {primaryCta}
             <ArrowRight size={16} />
           </a>
           <a href={current.url} target="_blank" rel="noreferrer" className="demo-open-btn">
-            Open Live Site
+            {secondaryCta}
             <ExternalLink size={16} />
           </a>
         </div>

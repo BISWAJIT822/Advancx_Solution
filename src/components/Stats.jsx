@@ -1,63 +1,47 @@
 import React from 'react';
-import { Target, Zap, TrendingUp, Cpu, Award, Globe, Shield, Layers } from 'lucide-react';
+import { useContent } from '../content/ContentContext';
+import { getIcon } from '../content/icons';
 
 const Stats = () => {
-  const logos = [
-    { name: 'Logoipsum', icon: <Cpu size={18} /> },
-    { name: 'University', icon: <Award size={18} /> },
-    { name: 'Network', icon: <Globe size={18} /> },
-    { name: 'Solution', icon: <Target size={18} /> },
-    { name: 'Global', icon: <Zap size={18} /> },
-    { name: 'TechScale', icon: <TrendingUp size={18} /> },
-    { name: 'CloudMatrix', icon: <Layers size={18} /> },
-    { name: 'CyberShield', icon: <Shield size={18} /> },
-  ];
+  const partners = useContent('partners');
+  const stats = useContent('stats');
 
   // Duplicate logos array for seamless horizontal loop
-  const marqueeLogos = [...logos, ...logos];
+  const marqueeLogos = [...partners.logos, ...partners.logos];
 
   return (
     <section id="about" className="partners-section">
       <div className="container">
         {/* Partner Logos */}
-        <p className="partners-title">Trusted by Leading Organizations</p>
+        <p className="partners-title">{partners.title}</p>
         <div className="partners-scroll-wrapper" style={{ marginBottom: '80px' }}>
           <div className="partners-flex">
-            {marqueeLogos.map((logo, idx) => (
-              <div key={idx} className="partner-logo">
-                {logo.icon}
-                <span>{logo.name}</span>
-              </div>
-            ))}
+            {marqueeLogos.map((logo, idx) => {
+              const Icon = getIcon(logo.icon);
+              return (
+                <div key={idx} className="partner-logo">
+                  <Icon size={18} />
+                  <span>{logo.name}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
 
         {/* Stats Grid */}
         <div className="stats-grid reveal">
           <div className="stats-intro">
-            <h2>Transforming Ideas Into Impact</h2>
-            <p>
-              We design, build, and deploy systems that optimize workflows, scale seamlessly, and generate tangible efficiency gains for your business.
-            </p>
+            <h2>{stats.heading}</h2>
+            <p>{stats.intro}</p>
           </div>
-          
-          <div className="stat-item">
-            <h3>500+</h3>
-            <h4>Successful projects</h4>
-            <p>Delivered on schedule with robust SLA compliance.</p>
-          </div>
-          
-          <div className="stat-item">
-            <h3>60%</h3>
-            <h4>Faster launch time</h4>
-            <p>Accelerating time-to-market using modular micro-services.</p>
-          </div>
-          
-          <div className="stat-item">
-            <h3>120%</h3>
-            <h4>Average ROI increase</h4>
-            <p>Proven cloud cost optimization and workflow automation.</p>
-          </div>
+
+          {stats.items.map((item, idx) => (
+            <div className="stat-item" key={idx}>
+              <h3>{item.value}</h3>
+              <h4>{item.label}</h4>
+              <p>{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

@@ -110,5 +110,3 @@ export const posts = [
     ],
   },
 ];
-
-export const getPost = (slug) => posts.find((p) => p.slug === slug);

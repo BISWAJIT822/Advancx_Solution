@@ -1,34 +1,10 @@
 import React from 'react';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import JarvisHUD from './JarvisHUD';
-
-// Ambient AI / telemetry code fragments drifting in the hero background
-const codeFragments = [
-  '> BOOTING AI KERNEL…',
-  'const core = new NeuralCore();',
-  'model.predict(x) → 0.986',
-  '[OK] synapse link established',
-  '0x1F · 0xFF · 0x5F',
-  'await core.think();',
-  'tensor.shape = [1, 512, 512]',
-  '01001101 01001001 01000001',
-  'GET /v1/inference · 200 OK',
-  'sync 100% · latency 12ms',
-  'nodes: 12,458 · load 67.3%',
-  'training epoch 42 · loss 0.014',
-];
+import { useContent } from '../content/ContentContext';
 
 const Hero = () => {
-  const handleScrollToContact = (e) => {
-    e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      window.scrollTo({
-        top: contactSection.offsetTop - 80,
-        behavior: 'smooth',
-      });
-    }
-  };
+  const hero = useContent('hero');
 
   const handleNavClick = (e, targetId) => {
     e.preventDefault();
@@ -49,7 +25,7 @@ const Hero = () => {
         <div className="tech-dot-grid"></div>
         <div className="tech-scan-lines"></div>
 
-        {codeFragments.map((frag, i) => (
+        {hero.codeFragments.map((frag, i) => (
           <span key={i} className={`code-frag cf-${i + 1}`}>{frag}</span>
         ))}
 
@@ -78,40 +54,37 @@ const Hero = () => {
           <div className="hero-content reveal active">
             {/* Raw Text Subtitle Badge */}
             <div className="hero-raw-badge">
-              // Where Privacy Meets Performance Excellence
+              {hero.badge}
             </div>
 
             <h1>
-              We Create World Advancing <span className="text-accent-color">Software</span> With Vision and Passion
+              {hero.titleLead} <span className="text-accent-color">{hero.titleAccent}</span> {hero.titleTail}
             </h1>
-            
-            <p>
-              We build high-performance websites, mobile apps, <span style={{ whiteSpace: 'nowrap' }}>e-commerce</span> platforms, and custom software that help businesses grow faster.
-            </p>
-            
+
+            <p>{hero.subtitle}</p>
+
             <div className="hero-actions">
-              <a href="#contact" className="btn-primary" onClick={handleScrollToContact}>
-                Get started now
+              <a href="#contact" className="btn-primary" onClick={(e) => handleNavClick(e, 'contact')}>
+                {hero.primaryCta}
                 <ArrowRight size={16} style={{ marginLeft: '6px' }} />
               </a>
               <a href="#about" className="btn-text-link" onClick={(e) => handleNavClick(e, 'about')}>
-                Learn more information
+                {hero.secondaryCta}
                 <ArrowUpRight size={16} style={{ marginLeft: '6px' }} />
               </a>
             </div>
 
             <div className="hero-trust">
               <div className="trust-avatars">
-                <div className="trust-avatar" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=60)' }}></div>
-                <div className="trust-avatar" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=60)' }}></div>
-                <div className="trust-avatar" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=80&auto=format&fit=crop&q=60)' }}></div>
-                <div className="trust-avatar" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&auto=format&fit=crop&q=60)' }}></div>
+                {hero.avatars.map((src, i) => (
+                  <div key={i} className="trust-avatar" style={{ backgroundImage: `url(${src})` }}></div>
+                ))}
               </div>
               <div className="trust-text">
-                <strong>Trusted by Industry experts</strong>
+                <strong>{hero.trustText}</strong>
                 <div className="trust-stars" style={{ color: 'var(--primary-color)' }}>
                   <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                  <span style={{ color: 'var(--text-light)', marginLeft: '6px', fontSize: '12px', fontWeight: '600' }}>4.9</span>
+                  <span style={{ color: 'var(--text-light)', marginLeft: '6px', fontSize: '12px', fontWeight: '600' }}>{hero.rating}</span>
                 </div>
               </div>
             </div>

@@ -242,5 +242,3 @@ export const legalPages = {
     ],
   },
 };
-
-export const getLegalPage = (slug) => legalPages[slug];

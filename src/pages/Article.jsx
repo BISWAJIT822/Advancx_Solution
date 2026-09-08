@@ -4,11 +4,12 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactPopup from '../components/ContactPopup';
-import { getPost, posts } from '../data/blogPosts';
+import { useContent } from '../content/ContentContext';
 
 const Article = () => {
   const { slug } = useParams();
-  const post = getPost(slug);
+  const { posts } = useContent('blogPage');
+  const post = posts.find((p) => p.slug === slug);
 
   if (!post) {
     return (

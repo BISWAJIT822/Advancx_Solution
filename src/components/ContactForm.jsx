@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { useContent } from '../content/ContentContext';
 
 // Web3Forms access key — get a free one at https://web3forms.com
 // (enter advancxsolution@gmail.com there; submissions are emailed to it).
 const WEB3FORMS_ACCESS_KEY = '146af91c-90fd-4b7c-bc1b-5f1b607fd50b';
 
 const ContactForm = () => {
+  const contact = useContent('contact');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -85,7 +87,7 @@ const ContactForm = () => {
       }
     } catch {
       setSubmitError(
-        'Could not send your message. Please try again, or email us directly at advancxsolution@gmail.com.'
+        `Could not send your message. Please try again, or email us directly at ${contact.email}.`
       );
     } finally {
       setIsSubmitting(false);
@@ -99,7 +101,7 @@ const ContactForm = () => {
           {/* Left Column: Contact info */}
           <div className="contact-info-panel">
             <p className="partners-title" style={{ textAlign: 'left', marginBottom: '8px' }}>Get In Touch</p>
-            <h2>Let's Advancx Your Business</h2>
+            <h2>{contact.heading}</h2>
             <p>
               Have a project in mind or need assistance with your existing systems? Reach out to our team of experts and let's craft a tailored solution for your company.
             </p>
@@ -111,7 +113,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Email Us</h4>
-                  <p><a href="mailto:advancxsolution@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }}>advancxsolution@gmail.com</a></p>
+                  <p><a href={`mailto:${contact.email}`} style={{ color: 'inherit', textDecoration: 'none' }}>{contact.email}</a></p>
                 </div>
               </div>
 
@@ -121,7 +123,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Call Us</h4>
-                  <p><a href="tel:+919348386856" style={{ color: 'inherit', textDecoration: 'none' }}>+91 93483 86856</a></p>
+                  <p><a href={`tel:${contact.phoneHref}`} style={{ color: 'inherit', textDecoration: 'none' }}>{contact.phone}</a></p>
                 </div>
               </div>
 
@@ -131,7 +133,7 @@ const ContactForm = () => {
                 </div>
                 <div className="contact-detail-text">
                   <h4>Visit Us</h4>
-                  <p>Advancx Solution, Baripada, Odisha 757001, India</p>
+                  <p>{contact.address}</p>
                 </div>
               </div>
             </div>

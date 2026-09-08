@@ -1,45 +1,16 @@
 import React from 'react';
-
-const steps = [
-  {
-    n: '01',
-    title: 'Strategic Planning',
-    desc: 'We map goals, scope, and architecture, turning your idea into a clear, actionable project roadmap.',
-  },
-  {
-    n: '02',
-    title: 'UI/UX Design',
-    desc: 'Wireframes and polished, user-first interfaces designed to convert and delight across every device.',
-  },
-  {
-    n: '03',
-    title: 'Development',
-    desc: 'Our team use the right framework, features, tools, and technology based on your needs.',
-  },
-  {
-    n: '04',
-    title: 'Testing & QA',
-    desc: 'Rigorous manual and automated testing to ship secure, fast, and bug-free releases.',
-  },
-  {
-    n: '05',
-    title: 'Launch & Support',
-    desc: 'Smooth deployment plus ongoing monitoring, updates, and support to keep you scaling.',
-  },
-];
+import { useContent } from '../content/ContentContext';
 
 const ProcessSection = () => {
+  const { eyebrow, heading, intro, steps } = useContent('process');
+
   return (
     <section className="section process-section">
       <div className="container">
         <div className="process-header reveal">
-          <span className="process-eyebrow">Smart Digital Services for Modern Businesses</span>
-          <h2>Expert-Driven Product Development Process</h2>
-          <p>
-            Specializing in custom web, mobile apps, software and AI solutions, we follow a proven
-            product development process to build powerful, feature-packed, secure applications for
-            businesses worldwide. Here&apos;s how a project runs:
-          </p>
+          <span className="process-eyebrow">{eyebrow}</span>
+          <h2>{heading}</h2>
+          <p>{intro}</p>
         </div>
 
         <div className="process-steps reveal">

@@ -4,11 +4,13 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactPopup from '../components/ContactPopup';
-import { getDoc, docs } from '../data/docsData';
+import { useContent } from '../content/ContentContext';
+import { getIcon } from '../content/icons';
 
 const DocPage = () => {
   const { slug } = useParams();
-  const doc = getDoc(slug);
+  const { items: docs } = useContent('docsPage');
+  const doc = docs.find((d) => d.slug === slug);
 
   if (!doc) {
     return (
@@ -31,7 +33,7 @@ const DocPage = () => {
     );
   }
 
-  const Icon = doc.icon;
+  const Icon = getIcon(doc.icon);
   const related = docs.filter((d) => d.slug !== doc.slug).slice(0, 3);
 
   return (
@@ -75,18 +77,21 @@ const DocPage = () => {
           <div className="container">
             <h2 className="article-related-title">Explore more docs</h2>
             <div className="page-grid">
-              {related.map(({ icon: RIcon, title, desc, slug: rslug }) => (
-                <Link to={`/documentation/${rslug}`} key={rslug} className="page-card doc-card">
+              {related.map((r) => {
+                const RIcon = getIcon(r.icon);
+                return (
+                <Link to={`/documentation/${r.slug}`} key={r.slug} className="page-card doc-card">
                   <div className="page-card-icon">
                     <RIcon size={22} strokeWidth={1.6} />
                   </div>
-                  <h3>{title}</h3>
-                  <p>{desc}</p>
+                  <h3>{r.title}</h3>
+                  <p>{r.desc}</p>
                   <span className="page-card-link">
                     Read more <ArrowUpRight size={14} />
                   </span>
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
