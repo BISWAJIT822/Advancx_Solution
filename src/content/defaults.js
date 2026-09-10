@@ -286,6 +286,7 @@ export const defaultContent = {
     title: 'Our Members',
     intro:
       'Meet the people who design, build, and ship every Advancx Solution project — in their own words.',
+    groupHeading: 'Decision-Makers',
     items: [
       {
         name: 'Biswajit Behera',
@@ -295,20 +296,20 @@ export const defaultContent = {
           'We build software that actually moves the needle for the businesses we work with.',
       },
       {
-        name: 'Team Member',
-        role: 'Chief Technology Officer',
-        image: '',
+        name: 'Ankit Dalei',
+        role: 'Co-Founder & CTO',
+        image: '/images/ankit-dalei.png',
         quote: 'Great engineering is invisible — it just works, reliably, every single time.',
       },
       {
-        name: 'Team Member',
-        role: 'Lead Software Engineer',
-        image: '',
+        name: 'Sumit Saha',
+        role: 'Co-Founder & COO',
+        image: '/images/sumit-saha.png',
         quote: 'I love turning messy, complex problems into clean and dependable code.',
       },
       {
         name: 'Team Member',
-        role: 'UI / UX Designer',
+        role: 'Managing Director',
         image: '',
         quote: "Good design is honest and simple — it gets out of the user's way.",
       },

@@ -4,12 +4,13 @@ import PageLayout from './PageLayout';
 import { useContent } from '../content/ContentContext';
 
 const MembersPage = () => {
-  const { eyebrow, title, intro, items } = useContent('members');
+  const { eyebrow, title, intro, groupHeading, items } = useContent('members');
 
   return (
     <PageLayout eyebrow={eyebrow} title={title} intro={intro}>
       <section className="section page-section">
         <div className="container">
+          {groupHeading && <h2 className="members-group-heading">{groupHeading}</h2>}
           <div className="members-grid">
             {items.map((m, i) => (
               <div className="member-card executive-card" key={i}>

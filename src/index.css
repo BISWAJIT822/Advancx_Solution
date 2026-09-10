@@ -2590,6 +2590,23 @@ body {
 }
 
 /* ===== Members page (testimonial-style cards) ===== */
+/* Group label above the cards, with a short accent rule under it. */
+.members-group-heading {
+  font-size: 26px;
+  margin: 0 0 26px;
+  position: relative;
+  padding-bottom: 12px;
+}
+.members-group-heading::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 54px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--primary-color);
+}
 .members-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

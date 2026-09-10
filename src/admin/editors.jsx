@@ -333,6 +333,9 @@ const PageHeader = ({ value, set }) => (
 export const MembersEditor = ({ value, set }) => (
   <>
     <PageHeader value={value} set={set} />
+    <Section title="Group heading" desc="Sits above the member cards. Leave blank to hide it.">
+      <Text label="Heading" value={value.groupHeading} onChange={(v) => set('groupHeading', v)} />
+    </Section>
     <Section title="Team members" desc="Leave the image blank to show the placeholder avatar.">
       <Repeater
         label="Members"
